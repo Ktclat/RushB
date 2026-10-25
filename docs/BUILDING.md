@@ -56,4 +56,4 @@ python tools/run-android-tests.py --serial emulator-5554 --abi x86_64 --install
 
 ## 持续集成
 
-GitHub Actions 在 `main` 推送和 Pull Request 上运行 JVM、Lint、调试包构建及 JS 离线检查。工作流只授予仓库读取权限，不使用站点账号、签名密钥或浏览器状态。模拟器实测按上述流程单独进行。
+GitHub Actions 在 `main` 推送和 Pull Request 上运行 JVM、Lint、调试包构建及 JS 离线检查。工作流显式初始化 Android 命令行工具并安装编译 SDK，不依赖运行器预装的 `sdkmanager`。工具版本固定为 15859902，来源为 [Android 官方下载页](https://developer.android.com/studio#command-line-tools-only)。工作流只授予仓库读取权限，不使用站点账号、签名密钥或浏览器状态。模拟器实测按上述流程单独进行。

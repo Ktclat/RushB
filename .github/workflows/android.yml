@@ -27,6 +27,11 @@ jobs:
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
         with:
           node-version: '22'
+      - uses: android-actions/setup-android@9fc6c4e9069bf8d3d10b2204b1fb8f6ef7065407 # v3
+        with:
+          cmdline-tools-version: '15859902'
+          packages: platform-tools
+          log-accepted-android-sdk-licenses: 'false'
       - name: Install compile SDK
         run: sdkmanager "platforms;android-37.2" "build-tools;36.0.0" "platform-tools"
       - name: Build, unit tests and lint
