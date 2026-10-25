@@ -1,0 +1,330 @@
+{
+  "version": "0.10.6",
+  "screenshots": [
+    {
+      "phase": "after",
+      "capturedUtc": "2026-10-25T09:51:39.756276+00:00",
+      "screenshot": "docs/screenshots/review-v0106/after/01-appearance.png",
+      "apkSha256": "2120ed0774ffccda7feedcef26fad600055e00020dc0f01a90033e4c180e8818",
+      "sha256": "ea2bda6fd54d37a9e4ee1af835ba2943aaed41582bce4ef0b934995b1a79b700",
+      "settings": {
+        "navigationStyle": "FLOATING",
+        "relay": "false",
+        "themeMode": "LIGHT",
+        "startTab": "MATCHES"
+      }
+    },
+    {
+      "phase": "after",
+      "capturedUtc": "2026-10-25T09:51:33.163359+00:00",
+      "screenshot": "docs/screenshots/review-v0106/after/02-profile.png",
+      "apkSha256": "2120ed0774ffccda7feedcef26fad600055e00020dc0f01a90033e4c180e8818",
+      "sha256": "f941a2a9ed147028bbd0f0cb3bacbd10664f0cb7129e5c8ce912f2cadad5ca57",
+      "settings": {
+        "navigationStyle": "FLOATING",
+        "relay": "false",
+        "themeMode": "LIGHT",
+        "startTab": "MATCHES"
+      }
+    },
+    {
+      "phase": "after",
+      "capturedUtc": "2026-10-25T09:59:05.015907+00:00",
+      "screenshot": "docs/screenshots/review-v0106/after/03-matches.png",
+      "apkSha256": "2120ed0774ffccda7feedcef26fad600055e00020dc0f01a90033e4c180e8818",
+      "sha256": "1b14eb061d9aa5125b147d339f3644307c8cd73a5b2100034eb91177dc91d193",
+      "settings": {
+        "navigationStyle": "FLOATING",
+        "relay": "false",
+        "themeMode": "LIGHT",
+        "startTab": "MATCHES"
+      }
+    },
+    {
+      "phase": "after",
+      "capturedUtc": "2026-10-25T09:59:11.747084+00:00",
+      "screenshot": "docs/screenshots/review-v0106/after/04-filter.png",
+      "apkSha256": "2120ed0774ffccda7feedcef26fad600055e00020dc0f01a90033e4c180e8818",
+      "sha256": "990ceec4c243bf4dd7010f94c55110711c711f9eb82d379af3081995c8e3a7f6",
+      "settings": {
+        "navigationStyle": "FLOATING",
+        "relay": "false",
+        "themeMode": "LIGHT",
+        "startTab": "MATCHES"
+      }
+    },
+    {
+      "phase": "after",
+      "capturedUtc": "2026-10-25T09:59:40.803189+00:00",
+      "screenshot": "docs/screenshots/review-v0106/after/05-ranking.png",
+      "apkSha256": "2120ed0774ffccda7feedcef26fad600055e00020dc0f01a90033e4c180e8818",
+      "sha256": "e1a9b6be9d8f0e360a529173fcf81a9bd5d3ece5abf47b39e1a0695a9aedf80e",
+      "settings": {
+        "navigationStyle": "FLOATING",
+        "relay": "false",
+        "themeMode": "LIGHT",
+        "startTab": "MATCHES"
+      }
+    },
+    {
+      "phase": "after",
+      "capturedUtc": "2026-10-25T09:59:50.633570+00:00",
+      "screenshot": "docs/screenshots/review-v0106/after/06-team.png",
+      "apkSha256": "2120ed0774ffccda7feedcef26fad600055e00020dc0f01a90033e4c180e8818",
+      "sha256": "de413792e9a114887755a13c4fac18cb7f9410429e96d862bd94bab8a78e189d",
+      "settings": {
+        "navigationStyle": "FLOATING",
+        "relay": "false",
+        "themeMode": "LIGHT",
+        "startTab": "MATCHES"
+      }
+    },
+    {
+      "phase": "after",
+      "capturedUtc": "2026-10-25T09:59:33.894896+00:00",
+      "screenshot": "docs/screenshots/review-v0106/after/07-calendar.png",
+      "apkSha256": "2120ed0774ffccda7feedcef26fad600055e00020dc0f01a90033e4c180e8818",
+      "sha256": "5e3d0b760ba5abda7fd824f91db8faabd1739ce3e9681a623c185f5d99ac311c",
+      "settings": {
+        "navigationStyle": "FLOATING",
+        "relay": "false",
+        "themeMode": "LIGHT",
+        "startTab": "MATCHES"
+      }
+    },
+    {
+      "phase": "after",
+      "capturedUtc": "2026-10-25T10:00:10.111299+00:00",
+      "screenshot": "docs/screenshots/review-v0106/after/08-statistics.png",
+      "apkSha256": "2120ed0774ffccda7feedcef26fad600055e00020dc0f01a90033e4c180e8818",
+      "sha256": "5b8688cd5ac2dac1a4b5c430e96c3c5c533d2b2ac3c6e73324b46784f90a471d",
+      "settings": {
+        "navigationStyle": "FLOATING",
+        "relay": "false",
+        "themeMode": "LIGHT",
+        "startTab": "MATCHES"
+      }
+    },
+    {
+      "phase": "after",
+      "capturedUtc": "2026-10-25T09:51:46.433030+00:00",
+      "screenshot": "docs/screenshots/review-v0106/after/09-theme-sheet.png",
+      "apkSha256": "2120ed0774ffccda7feedcef26fad600055e00020dc0f01a90033e4c180e8818",
+      "sha256": "dfb1473edc2c05bdbe2e697f7dacc6f88c2a3aa2c3afafa63f3e8987fa65fa53",
+      "settings": {
+        "navigationStyle": "FLOATING",
+        "relay": "false",
+        "themeMode": "LIGHT",
+        "startTab": "MATCHES"
+      }
+    },
+    {
+      "phase": "after",
+      "capturedUtc": "2026-10-25T09:52:35.871374+00:00",
+      "screenshot": "docs/screenshots/review-v0106/after/10-navigation-sheet.png",
+      "apkSha256": "2120ed0774ffccda7feedcef26fad600055e00020dc0f01a90033e4c180e8818",
+      "sha256": "99bcbec5f7acefcc927641f7d235b30e3a07ba60c0db41d8d2c7e41fe6a7f2a7",
+      "settings": {
+        "navigationStyle": "FLOATING",
+        "relay": "false",
+        "themeMode": "LIGHT",
+        "startTab": "MATCHES"
+      }
+    },
+    {
+      "phase": "after",
+      "capturedUtc": "2026-10-25T09:52:45.295393+00:00",
+      "screenshot": "docs/screenshots/review-v0106/after/11-fixed-navigation.png",
+      "apkSha256": "2120ed0774ffccda7feedcef26fad600055e00020dc0f01a90033e4c180e8818",
+      "sha256": "510cb80bbb2a0909a86de0a555b21d1ee47637a893d5eb1775bc4feb5e67f0bf",
+      "settings": {
+        "navigationStyle": "FIXED",
+        "relay": "false",
+        "themeMode": "LIGHT",
+        "startTab": "MATCHES"
+      }
+    },
+    {
+      "phase": "after",
+      "capturedUtc": "2026-10-25T09:53:00.167199+00:00",
+      "screenshot": "docs/screenshots/review-v0106/after/12-start-sheet.png",
+      "apkSha256": "2120ed0774ffccda7feedcef26fad600055e00020dc0f01a90033e4c180e8818",
+      "sha256": "50ebe3c3ca67104de0cf35233a6c8aeca8ae1b15e5b985fc31fc1e09a3a5b8f3",
+      "settings": {
+        "navigationStyle": "FLOATING",
+        "relay": "false",
+        "themeMode": "LIGHT",
+        "startTab": "MATCHES"
+      }
+    },
+    {
+      "phase": "after",
+      "capturedUtc": "2026-10-25T09:53:13.517688+00:00",
+      "screenshot": "docs/screenshots/review-v0106/after/13-start-ranking.png",
+      "apkSha256": "2120ed0774ffccda7feedcef26fad600055e00020dc0f01a90033e4c180e8818",
+      "sha256": "f32fa95839f7090f8780042f9f16cb8f3eb2a64d4c242403805cd75180606127",
+      "settings": {
+        "navigationStyle": "FLOATING",
+        "relay": "false",
+        "themeMode": "LIGHT",
+        "startTab": "RANKINGS"
+      }
+    },
+    {
+      "phase": "after",
+      "capturedUtc": "2026-10-25T09:59:21.332151+00:00",
+      "screenshot": "docs/screenshots/review-v0106/after/14-filter-selected.png",
+      "apkSha256": "2120ed0774ffccda7feedcef26fad600055e00020dc0f01a90033e4c180e8818",
+      "sha256": "e7b48aa554ae4e83fa36040cf0c74600c296f99bf2323eab25dc1414c1b73fb2",
+      "settings": {
+        "navigationStyle": "FLOATING",
+        "relay": "false",
+        "themeMode": "LIGHT",
+        "startTab": "MATCHES"
+      }
+    },
+    {
+      "phase": "after",
+      "capturedUtc": "2026-10-25T10:02:14.893285+00:00",
+      "screenshot": "docs/screenshots/review-v0106/after/15-ranking-bottom.png",
+      "apkSha256": "2120ed0774ffccda7feedcef26fad600055e00020dc0f01a90033e4c180e8818",
+      "sha256": "5096a35de5259ff650a46c19cc24a2ffd60cd7cfe8e131458a2425fc3653976a",
+      "settings": {
+        "navigationStyle": "FLOATING",
+        "relay": "false",
+        "themeMode": "LIGHT",
+        "startTab": "MATCHES"
+      }
+    },
+    {
+      "phase": "after",
+      "capturedUtc": "2026-10-25T10:02:28.250542+00:00",
+      "screenshot": "docs/screenshots/review-v0106/after/16-matches-bottom.png",
+      "apkSha256": "2120ed0774ffccda7feedcef26fad600055e00020dc0f01a90033e4c180e8818",
+      "sha256": "473bc33ab9bb707744a22e6550f54e0991e4ffceafe7d826e583293fb7f384fe",
+      "settings": {
+        "navigationStyle": "FLOATING",
+        "relay": "false",
+        "themeMode": "LIGHT",
+        "startTab": "MATCHES"
+      }
+    },
+    {
+      "phase": "after",
+      "capturedUtc": "2026-10-25T09:51:59.828097+00:00",
+      "screenshot": "docs/screenshots/review-v0106/after/17-dark-ranking.png",
+      "apkSha256": "2120ed0774ffccda7feedcef26fad600055e00020dc0f01a90033e4c180e8818",
+      "sha256": "3b0faa87d63c1d315dc8f34d8e7b9d3c2c274d6e79c26e0fd6347853a95186ca",
+      "settings": {
+        "navigationStyle": "FLOATING",
+        "relay": "false",
+        "themeMode": "DARK",
+        "startTab": "MATCHES"
+      }
+    },
+    {
+      "phase": "after",
+      "capturedUtc": "2026-10-25T10:00:17.015819+00:00",
+      "screenshot": "docs/screenshots/review-v0106/after/18-ct-statistics.png",
+      "apkSha256": "2120ed0774ffccda7feedcef26fad600055e00020dc0f01a90033e4c180e8818",
+      "sha256": "c65335fdacc981f66905bef075160387a1b4becfee14d89ae09d2bfc5a182887",
+      "settings": {
+        "navigationStyle": "FLOATING",
+        "relay": "false",
+        "themeMode": "LIGHT",
+        "startTab": "MATCHES"
+      }
+    },
+    {
+      "phase": "after",
+      "capturedUtc": "2026-10-25T10:09:19.266436+00:00",
+      "screenshot": "docs/screenshots/review-v0106/after/19-event.png",
+      "apkSha256": "2120ed0774ffccda7feedcef26fad600055e00020dc0f01a90033e4c180e8818",
+      "sha256": "9c300c033857ecebc25480b1136a8776a28bdc446cae52d2250b80cf67cb0f20",
+      "settings": {
+        "navigationStyle": "FLOATING",
+        "relay": "false",
+        "themeMode": "LIGHT",
+        "startTab": "MATCHES"
+      }
+    },
+    {
+      "phase": "after",
+      "capturedUtc": "2026-10-25T10:09:43.936908+00:00",
+      "screenshot": "docs/screenshots/review-v0106/after/20-news.png",
+      "apkSha256": "2120ed0774ffccda7feedcef26fad600055e00020dc0f01a90033e4c180e8818",
+      "sha256": "ac995d0e347081bf46a092f1b288dc59bf2cb058273a088399b9191990e63f2a",
+      "settings": {
+        "navigationStyle": "FLOATING",
+        "relay": "false",
+        "themeMode": "LIGHT",
+        "startTab": "MATCHES"
+      }
+    },
+    {
+      "phase": "after",
+      "capturedUtc": "2026-10-25T09:52:17.823259+00:00",
+      "screenshot": "docs/screenshots/review-v0106/after/21-system-dark.png",
+      "apkSha256": "2120ed0774ffccda7feedcef26fad600055e00020dc0f01a90033e4c180e8818",
+      "sha256": "f878a504992d0d87409e7547bf07aa3c4aa83a5d8672eaded362ba6ebafea975",
+      "settings": {
+        "navigationStyle": "FLOATING",
+        "relay": "false",
+        "themeMode": "SYSTEM",
+        "startTab": "MATCHES"
+      }
+    },
+    {
+      "phase": "after",
+      "capturedUtc": "2026-10-25T09:52:23.562707+00:00",
+      "screenshot": "docs/screenshots/review-v0106/after/22-system-light.png",
+      "apkSha256": "2120ed0774ffccda7feedcef26fad600055e00020dc0f01a90033e4c180e8818",
+      "sha256": "590a201b307f949eadc6017c93a790a7902ebfc85e155bd16744e0fecd975c5b",
+      "settings": {
+        "navigationStyle": "FLOATING",
+        "relay": "false",
+        "themeMode": "SYSTEM",
+        "startTab": "MATCHES"
+      }
+    },
+    {
+      "phase": "after",
+      "capturedUtc": "2026-10-25T10:10:05.860908+00:00",
+      "screenshot": "docs/screenshots/review-v0106/after/23-restart-light.png",
+      "apkSha256": "2120ed0774ffccda7feedcef26fad600055e00020dc0f01a90033e4c180e8818",
+      "sha256": "be02be3e38daa60df26469bcae78d82c99ab31bc5991054a18216f86c9aa9329",
+      "settings": {
+        "navigationStyle": "FLOATING",
+        "relay": "false",
+        "themeMode": "LIGHT",
+        "startTab": "MATCHES"
+      }
+    },
+    {
+      "phase": "after",
+      "capturedUtc": "2026-10-25T10:03:59.218627+00:00",
+      "screenshot": "docs/screenshots/review-v0106/after/24-matches-expanded-bottom.png",
+      "apkSha256": "2120ed0774ffccda7feedcef26fad600055e00020dc0f01a90033e4c180e8818",
+      "sha256": "0de047a4d28a37632a1f68208082e370d06278dbf35d24e5d61312495f4c084c",
+      "settings": {
+        "navigationStyle": "FLOATING",
+        "relay": "false",
+        "themeMode": "LIGHT",
+        "startTab": "MATCHES"
+      }
+    },
+    {
+      "phase": "after",
+      "capturedUtc": "2026-10-25T10:04:07.955097+00:00",
+      "screenshot": "docs/screenshots/review-v0106/after/25-calendar-bottom.png",
+      "apkSha256": "2120ed0774ffccda7feedcef26fad600055e00020dc0f01a90033e4c180e8818",
+      "sha256": "3957b14deee7ebfed34bce5f0a9b94b14490ec204ef9b124325e49a2555da692",
+      "settings": {
+        "navigationStyle": "FLOATING",
+        "relay": "false",
+        "themeMode": "LIGHT",
+        "startTab": "MATCHES"
+      }
+    }
+  ]
+}

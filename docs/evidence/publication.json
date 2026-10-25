@@ -1,0 +1,56 @@
+{
+  "date": "2026-10-25T10:40:22.659061+00:00",
+  "version": "0.10.6",
+  "source": "clean export of staged files",
+  "testedAppTree": "46e21dd05356be9d7e1c338c1c7aec38bc882841",
+  "buildSeconds": 223,
+  "buildTasksExecuted": 85,
+  "jvm": {
+    "tests": 165,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "lint": {
+    "errors": 0,
+    "warnings": 19,
+    "categories": {
+      "OldTargetApi": 1,
+      "AndroidGradlePluginVersion": 1,
+      "GradleDependency": 2,
+      "NewerVersionAvailable": 4,
+      "UseKtx": 11
+    }
+  },
+  "android": {
+    "device": "dedicated Android 16 / API 36 / x86_64 emulator",
+    "tests": 103,
+    "failures": 0,
+    "seconds": 154.027
+  },
+  "javascript": {
+    "reader": "DOM, JSON and RSS checks passed",
+    "relayPolicyTests": 3
+  },
+  "apkArtifacts": [
+    {
+      "name": "app-arm64-v8a-debug.apk",
+      "bytes": 114537227,
+      "sha256": "ab9e65e8dddb2f6197d0009b215f8aae27b0c1f28dadcdb8269e9a1b4a323855"
+    },
+    {
+      "name": "app-armeabi-v7a-debug.apk",
+      "bytes": 109283223,
+      "sha256": "f2b48db6643837945f1d26d35593fe693da75b8476ddf35b8fa71c7e0cfeef17"
+    },
+    {
+      "name": "app-x86_64-debug.apk",
+      "bytes": 121365657,
+      "sha256": "c1f00a705dcd771c477b915d3110399e1908b0829ee072474c9f4ecd1695095e"
+    }
+  ],
+  "productionFixturesPackaged": false,
+  "license": "AGPL-3.0",
+  "realNetworkAcceptanceRepeated": false,
+  "deleteBranchOnMerge": true
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "url": "https://www.hltv.org/",
+    "capturedAt": "2026-10-24T04:40:47.072976Z",
+    "relayEnabled": false,
+    "length": 226920,
+    "rawSha256": "266ad46405b7e72cb38e49dfbb0d7384230a5e7334e1a0f169f32059800a2931",
+    "fixture": "app/src/test/resources/hltv/news-home-2026-10-24.html",
+    "fixtureSha256": "04d95c1dd59deab3cc65bc4da8eb354705f4cfb525929a914dd5e985bd65d63a",
+    "captureVersion": "0.10.1"
+  },
+  {
+    "url": "https://www.hltv.org/news/archive/2026/october",
+    "capturedAt": "2026-10-24T04:47:14.614686Z",
+    "relayEnabled": false,
+    "length": 172292,
+    "rawSha256": "3bc1bc8244150840c9f9c2bf7dcbcecc1329cb9b3be22f0f15d392c6381e7d75",
+    "fixture": "app/src/test/resources/hltv/news-archive-2026-10-24.html",
+    "fixtureSha256": "de7064b473d50e3181b16fb42bc30321ebd42c7040ad73058cf073ce59ce468c",
+    "captureVersion": "0.10.1"
+  }
+]

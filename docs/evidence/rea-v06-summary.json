@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-18",
+  "referenceApk": {
+    "package": "org.hltv.android",
+    "versionName": "3.0.59",
+    "versionCode": 124,
+    "sha256": "e92b3d85ee65861488285161f8986ae8f453db3bfdb90dfa62f7bb0ef3784188"
+  },
+  "priorEvidence": "rea-v05-summary.json",
+  "scope": "Read-only REA package inventory and targeted SDK DEX field inspection; reference APK not executed, no private API calls, no copied implementation.",
+  "observedFields": [
+    "VRS forecast",
+    "team map win/pick/ban",
+    "head-to-head map records",
+    "recent match form",
+    "per-map player stats",
+    "kill matrices"
+  ],
+  "publicSourceRule": "Use actual public-page fields and units; do not infer exact VRS changes or private wire values from class names.",
+  "duels": {
+    "publicPerformanceLinkResolved": true,
+    "nativeDomParserCompleted": false,
+    "nativeMatrixUiTests": "Explicit test values only; no live ingestion acceptance."
+  },
+  "localNotes": ".local/match-v06/apk-notes.md"
+}

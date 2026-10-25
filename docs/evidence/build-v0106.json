@@ -1,0 +1,61 @@
+{
+  "version": "0.10.6",
+  "versionCode": 21,
+  "verifiedUtc": "2026-10-25T10:10:24.232826+00:00",
+  "emulator": "emulator-5554 / RushB_ProfileReview / API 36",
+  "jvm": {
+    "tests": 165,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "lint": {
+    "Error": 0,
+    "Warning": 20
+  },
+  "lintCategories": {
+    "OldTargetApi": 1,
+    "GradleDependency": 4,
+    "NewerVersionAvailable": 4,
+    "UseKtx": 11
+  },
+  "artifacts": [
+    {
+      "path": "app/build/outputs/apk/debug/app-arm64-v8a-debug.apk",
+      "bytes": 115461286,
+      "sha256": "52d06a03a4a358d770cc784e019a79cf2415b7df890344796589be2b71cd9384",
+      "testFixturesPackaged": false
+    },
+    {
+      "path": "app/build/outputs/apk/debug/app-armeabi-v7a-debug.apk",
+      "bytes": 110207286,
+      "sha256": "0aff68e9af3dc9e0c05cd616a58b19a4da48ad93313ab870b631fb3b68b71810",
+      "testFixturesPackaged": false
+    },
+    {
+      "path": "app/build/outputs/apk/debug/app-x86_64-debug.apk",
+      "bytes": 122289716,
+      "sha256": "2120ed0774ffccda7feedcef26fad600055e00020dc0f01a90033e4c180e8818",
+      "testFixturesPackaged": false
+    }
+  ],
+  "installedApkSha256": "2120ed0774ffccda7feedcef26fad600055e00020dc0f01a90033e4c180e8818",
+  "testApkSha256": "428896abc53aac13c0dd68c95b7a97e9caa6bda1e589795c306299ef9ef54e9c",
+  "androidRegression": {
+    "tests": 103,
+    "failures": 0,
+    "seconds": 146.625,
+    "log": ".local/android-v0106-final.log",
+    "installedApkSha256": "2120ed0774ffccda7feedcef26fad600055e00020dc0f01a90033e4c180e8818"
+  },
+  "earlierRegression": {
+    "tests": 103,
+    "failures": 0,
+    "seconds": 187.605,
+    "log": ".local/android-v0106-first.log",
+    "installedApkSha256": "9279a62d69016d128640f488ebd88193317b553b5218527dafa3cd5c4e5934d0",
+    "buildLog": ".local/build-v0106-first.log",
+    "followupChange": "Final revision adds observed light logo variants and statistics column gutters."
+  },
+  "buildLog": ".local/build-v0106-final.log"
+}

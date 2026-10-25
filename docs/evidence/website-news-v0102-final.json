@@ -1,0 +1,28 @@
+{
+  "began": "2026-10-24T05:30:49.983082Z",
+  "version": "0.10.2",
+  "relayEnabled": false,
+  "news": {
+    "stamp": {
+      "url": "https://www.hltv.org/news/archive/2026/october",
+      "at": "2026-10-24T05:31:22.867Z",
+      "origin": "NETWORK"
+    },
+    "count": 189,
+    "first": "Eternal Fire keep Singapore Major dream alive with DraculaN S7 victory",
+    "firstUrl": "https://www.hltv.org/news/45785/eternal-fire-keep-singapore-major-dream-alive-with-draculan-s7-victory",
+    "last": "LOUD drop unannounced CS team"
+  },
+  "article": {
+    "url": "https://www.hltv.org/news/45785/eternal-fire-keep-singapore-major-dream-alive-with-draculan-s7-victory",
+    "stamp": {
+      "url": "https://www.hltv.org/news/45785/eternal-fire-keep-singapore-major-dream-alive-with-draculan-s7-victory",
+      "at": "2026-10-24T05:31:52.309Z",
+      "origin": "NETWORK"
+    },
+    "blocks": 11
+  },
+  "success": true,
+  "finished": "2026-10-24T05:31:53.434154Z",
+  "apkSha256": "271d6e3ba9eb9ebaa06065c88dab52ca12f48ce5096aa619c70527e6098e7aaf"
+}

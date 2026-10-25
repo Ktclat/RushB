@@ -1,0 +1,185 @@
+{
+  "initialJsonProbe": {
+    "transport": "HTTPS",
+    "url": "https://www.hltv.org/mobile/MatchScreen?matchId=2399415",
+    "startedAt": "2026-10-18T14:38:35.948195Z",
+    "relayEnabled": false,
+    "freshDirectory": true,
+    "version": "0.6.1",
+    "httpStatus": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "bodyBytes": 262142,
+    "bodySha256": "7e58905bba9e5e3ec27bae9a4106b2e4c916e74648c3b65cf9b1c1a8082fa95a",
+    "outcome": "PASSED",
+    "origin": "NETWORK",
+    "matchId": "2399415",
+    "finishedAt": "2026-10-18T14:38:40.054481Z",
+    "cacheFiles": 1
+  },
+  "additionalJsonProbes": [
+    {
+      "url": "https://www.hltv.org/mobile/MatchesV4",
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "bytes": 1995239,
+      "at": "2026-10-18T14:41:09.694753Z",
+      "sha256": "c452f8f4c9285fcc210126dc5af95bd20648780d331de79ca685b212626a163c"
+    },
+    {
+      "url": "https://www.hltv.org/mobile/EventsData2",
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "bytes": 167117,
+      "at": "2026-10-18T14:41:10.505579Z",
+      "sha256": "3faf90515bb71be2fe6ca32a5e3d0bcea5d6a44a054eabe8a2fb8947cf0d685f"
+    },
+    {
+      "url": "https://www.hltv.org/mobile/EventDetails2?eventId=8932",
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "bytes": 66015,
+      "at": "2026-10-18T14:41:12.452960Z",
+      "sha256": "a3a3afa08e242838e67118e53829b0c5fdfcf1efbc655d5b3f894595b18cab52"
+    },
+    {
+      "url": "https://www.hltv.org/mobile/TeamScreen?teamId=11283",
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "bytes": 61186,
+      "at": "2026-10-18T14:41:14.489881Z",
+      "sha256": "ac65905c361393ae9fc8f44937091755eaa33bef332ab8bda8f0aab07d79279a"
+    },
+    {
+      "url": "https://www.hltv.org/mobile/PlayerScreen?playerId=19230",
+      "status": 200,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "bytes": 125173,
+      "at": "2026-10-18T14:41:16.486501Z",
+      "sha256": "76bd8038b8c3ded0a645c304d11c1f20953b6401470d8428eef4891eb70ebeff"
+    }
+  ],
+  "newsAndEmbeds": [
+    {
+      "url": "https://www.hltv.org/mobile/TeamNews?teamId=11283",
+      "at": "2026-10-18T14:52:49.224328Z",
+      "outcome": "READ",
+      "bytes": 31196
+    },
+    {
+      "url": "https://www.hltv.org/mobile/PlayerNews?playerId=19230",
+      "at": "2026-10-18T14:52:52.978450Z",
+      "outcome": "READ",
+      "bytes": 24274
+    },
+    {
+      "url": "https://www.hltv.org/mobile/embeds/Brackets?eventId=8932&bracketId=5359",
+      "at": "2026-10-18T14:52:55.796377Z",
+      "outcome": "READ",
+      "bytes": 40606
+    },
+    {
+      "url": "https://www.hltv.org/mobile/embeds/Brackets?eventId=8932&bracketId=5360",
+      "at": "2026-10-18T14:52:58.605637Z",
+      "outcome": "READ",
+      "bytes": 35491
+    },
+    {
+      "url": "https://www.hltv.org/mobile/embeds/Brackets?eventId=8932&bracketId=5361",
+      "at": "2026-10-18T14:53:01.289922Z",
+      "outcome": "READ",
+      "bytes": 47061
+    },
+    {
+      "url": "https://www.hltv.org/mobile/embeds/Brackets?eventId=8932&bracketId=5362",
+      "at": "2026-10-18T14:53:03.797849Z",
+      "outcome": "READ",
+      "bytes": 47988
+    }
+  ],
+  "productionWorkflow": {
+    "startedAt": "2026-10-18T15:27:41.861815Z",
+    "relayEnabled": false,
+    "version": "0.6.1",
+    "matches": {
+      "url": "https://www.hltv.org/mobile/MatchesV4",
+      "at": "2026-10-18T15:27:44.364Z",
+      "origin": "NETWORK"
+    },
+    "events": {
+      "url": "https://www.hltv.org/mobile/EventsData2",
+      "at": "2026-10-18T15:27:45.367Z",
+      "origin": "NETWORK"
+    },
+    "match": {
+      "url": "https://www.hltv.org/mobile/MatchScreen?matchId=2399415",
+      "at": "2026-10-18T15:27:48.429Z",
+      "origin": "NETWORK"
+    },
+    "team": {
+      "url": "https://www.hltv.org/mobile/TeamScreen?teamId=11283",
+      "at": "2026-10-18T15:27:52.405Z",
+      "origin": "NETWORK"
+    },
+    "player": {
+      "url": "https://www.hltv.org/mobile/PlayerScreen?playerId=19230",
+      "at": "2026-10-18T15:27:57.616Z",
+      "origin": "NETWORK"
+    },
+    "event": {
+      "url": "https://www.hltv.org/mobile/EventDetails2?eventId=8932",
+      "at": "2026-10-18T15:28:03.560Z",
+      "origin": "NETWORK"
+    },
+    "matchCount": 564,
+    "eventCount": 203,
+    "playerEvents": 107,
+    "teamEvents": 97,
+    "eventSchedule": 14,
+    "brackets": 4,
+    "duelScopes": 4,
+    "outcome": "PASSED",
+    "finishedAt": "2026-10-18T15:28:15.721335Z"
+  },
+  "device": {
+    "serial": "emulator-5554",
+    "android": "16",
+    "api": 36,
+    "abi": "x86_64"
+  },
+  "httpProxy": "null",
+  "adbReverse": "",
+  "scope": "No relay or browser credential import. All production workflow phases used NETWORK data captured after each refresh started.",
+  "integrity": "No integrity-required response was observed on these successful requests; no official attestation/session is claimed.",
+  "browserJsonProbe": {
+    "transport": "BROWSER",
+    "url": "https://www.hltv.org/mobile/MatchScreen?matchId=2399415",
+    "startedAt": "2026-10-18T15:08:56.272915Z",
+    "relayEnabled": false,
+    "freshDirectory": true,
+    "version": "0.6.1",
+    "httpStatus": 200,
+    "headers": {
+      "content-type": "application/json"
+    },
+    "bodyBytes": 262146,
+    "bodySha256": "d1ea0ae157642f5259f28537d13b498c62630eed6aff4439068d68fa621328da",
+    "outcome": "PASSED",
+    "origin": "NETWORK",
+    "matchId": "2399415",
+    "finishedAt": "2026-10-18T15:09:15.176967Z",
+    "cacheFiles": 1
+  },
+  "finalWorkflowLog": ".local/mobile-workflow-v061-verified.log"
+}

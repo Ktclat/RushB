@@ -1,0 +1,579 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#F7F7F8"><meta name="description" content="MatchScope CS2 HLTV 字段对齐版：模拟数据，仅展示在 HLTV 网页有来源的统计字段">
+<title>MatchScope CS2 · HLTV 字段对齐版</title>
+<style>:root{
+  color-scheme:light;
+  --bg:#F7F7F8;--white:#FFFFFF;--ink:#17181A;--text:#36383C;--secondary:#777B82;
+  --muted:#A4A7AD;--stroke:#ECEDEF;--soft:#EFEFF0;--hover:#F6F6F7;
+  --active:#E8E8EA;--accent:#303438;--green:#278769;--green-bg:#EAF6F0;
+  --red:#CF5550;--red-bg:#FFF0EE;--blue:#537FA4;--blue-bg:#EDF4FC;
+  --shadow:0 4px 22px rgba(22,24,29,.035);--safe:env(safe-area-inset-bottom,0px);
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","PingFang SC","HarmonyOS Sans SC","Noto Sans CJK SC","Microsoft YaHei",sans-serif;
+  -webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%;font-synthesis:none;
+}
+*{box-sizing:border-box}html,body{height:100%;margin:0;overscroll-behavior:none}body{background:#EAEAEC;color:var(--ink)}
+button,input,select{font:inherit}button{cursor:pointer;color:inherit;-webkit-tap-highlight-color:transparent}
+button:focus-visible,input:focus-visible,select:focus-visible,[tabindex]:focus-visible{outline:2px solid #626C78;outline-offset:2px}
+svg{display:block;flex:none}::-webkit-scrollbar{display:none}*{scrollbar-width:none}
+.app{position:relative;isolation:isolate;width:min(100%,458px);height:100dvh;min-height:520px;margin:auto;overflow:hidden;background:var(--bg);display:flex;flex-direction:column}
+@media(min-width:630px){body{display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 22% 13%,#F9F9FA,#E8E9EB 60%)}.app{height:min(940px,96dvh);min-height:610px;border-radius:34px;box-shadow:0 28px 85px #2021271F,0 0 0 1px #090b1405}}
+.main-header{height:78px;flex:none;padding:8px 18px 0 22px;display:flex;align-items:center;justify-content:space-between;background:var(--bg);z-index:6}
+.main-header h1{font-size:27px;letter-spacing:-.75px;font-weight:735;line-height:1.2;margin:0}
+.head-actions{display:flex;align-items:center;gap:3px}.icon-button{display:grid;place-items:center;border:0;background:transparent;border-radius:14px;min-width:39px;width:39px;height:41px;color:#393B3F}.icon-button:active{background:var(--active)}
+.mini-pill{font-size:10px;color:#92959A;background:#EFEFF0;border-radius:999px;padding:5px 9px;font-weight:650;white-space:nowrap}
+.scroll-area{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;padding:0 16px calc(110px + var(--safe));overscroll-behavior:contain}
+.app.nav-fixed .scroll-area{padding-bottom:calc(95px + var(--safe))}
+.scroll-area > *:last-child{margin-bottom:6px}
+.bottom-nav{position:absolute;z-index:8;bottom:0;left:0;right:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));align-items:center;padding:8px 9px calc(7px + var(--safe));gap:2px;background:#fff;border-top:1px solid #F0F0F1;transition:all .18s ease}
+.nav-button{min-width:0;min-height:57px;background:transparent;border:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:5px;color:#91959B;font-size:11px;white-space:nowrap;border-radius:22px;font-weight:540}
+.nav-button.active{color:#202124;font-weight:700}.nav-button.active svg{stroke-width:2.2}
+.app.nav-floating .bottom-nav{left:13px;right:13px;bottom:calc(12px + var(--safe));padding:6px;border:1px solid #F2F2F3;background:rgba(255,255,255,.97);border-radius:999px;box-shadow:0 6px 32px #13151B12}
+.app.nav-floating .nav-button{min-height:61px;border-radius:999px}.app.nav-floating .nav-button.active{background:#EDEDEF}
+.helper-top{padding:2px 4px 11px;color:#93969C;font-size:11px;display:flex;align-items:center;gap:6px}
+.row{display:flex;align-items:center}.between{justify-content:space-between}.grow{flex:1;min-width:0}.sub{color:var(--secondary)}.text-quiet{color:var(--muted)}
+.section-title{font-size:16px;font-weight:700;letter-spacing:-.35px;margin:0}.section-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:20px 6px 11px}
+.section-more{font-size:12px;color:#73777E;background:none;border:0;display:flex;align-items:center;gap:4px;padding:5px}
+.surface{background:#fff;border-radius:23px;overflow:hidden;box-shadow:var(--shadow)}.surface + .surface{margin-top:12px}
+.rounded-subtle{background:#F0F0F1;border-radius:14px}.thin-divider{height:1px;background:#F0F1F2}
+.dates-holder{margin:0 -16px;padding:1px 0 9px;background:var(--bg)}.dates-strip{display:flex;gap:7px;padding:0 16px 3px;overflow-x:auto;overscroll-behavior-inline:contain;scroll-snap-type:x proximity}
+.date-button{flex:0 0 56px;height:70px;background:transparent;border:0;border-radius:20px;color:#8D9096;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;scroll-snap-align:center}
+.date-button .weekday{font-size:11px}.date-button .date-num{font-size:21px;font-weight:650;color:#54575D;line-height:1.2;font-variant-numeric:tabular-nums}.date-button.selected{background:#E9E9EB}.date-button.selected .date-num{color:#18191A}.date-button.today:not(.selected) .date-num{color:#28886B}
+.day-head{display:flex;align-items:center;justify-content:space-between;padding:3px 4px 0}.day-head h2{font-size:18px;letter-spacing:-.4px;font-weight:720;margin:0}.date-action{display:flex;align-items:center;gap:4px;border:0;background:none;color:#6D7177;font-size:12px;padding:8px 2px}.input-date-hidden{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
+.chips{display:flex;gap:7px;overflow-x:auto;padding:12px 1px 8px}.chip{white-space:nowrap;background:#EBEBED;border:0;color:#7D8188;border-radius:999px;padding:9px 13px;font-size:12px;font-weight:600;line-height:1}.chip.active{background:#27292C;color:#fff}
+.demo-strip{display:flex;align-items:center;gap:6px;color:#9A9DA2;font-size:11px;padding:7px 5px 7px;line-height:1.5}
+.event-group{background:#fff;border-radius:23px;overflow:hidden;margin-top:12px;box-shadow:var(--shadow)}.event-head{padding:16px 14px 14px;min-height:67px;display:flex;align-items:center;gap:10px}
+.event-emblem{flex:none;width:40px;height:40px;border-radius:14px;background:var(--e-bg,#F2F2F3);color:var(--e-fg,#313337);font-weight:830;letter-spacing:-.9px;font-size:12px;display:grid;place-items:center}.event-head-main{flex:1;min-width:0;text-align:left}
+.event-head-title{font-size:13.7px;font-weight:680;letter-spacing:-.15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.event-head-meta{margin-top:5px;font-size:11px;color:#9A9DA2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.event-head-button{border:0;background:none;padding:0;display:flex;align-items:center;gap:9px;text-align:left;flex:1;min-width:0}.collapse-btn{width:30px;height:30px;display:grid;place-items:center;background:#F4F4F5;border:0;border-radius:11px;color:#8B8E94}
+.event-count{font-size:10px;background:#F2F2F3;color:#898B90;padding:5px 7px;border-radius:8px;font-weight:600;white-space:nowrap}
+.match-row{min-height:104px;padding:13px 11px 12px 14px;display:grid;grid-template-columns:45px minmax(0,1fr) 73px minmax(0,1fr) 31px;align-items:center;gap:4px;border-top:1px solid #F1F1F2;cursor:pointer}
+.match-row:active{background:#FAFAFB}.match-clock{align-self:center;display:flex;align-items:flex-start;flex-direction:column;gap:8px}.time-value{font-size:13px;font-weight:650;font-variant-numeric:tabular-nums}.bo-label{font-size:10px;color:#9C9EA4}
+.match-side{min-width:0;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center}
+.team-emblem{flex:none;width:37px;height:37px;border-radius:13px;background:var(--t-bg,#EDEEEE);color:var(--t-fg,#3C4246);display:grid;place-items:center;font-weight:850;font-size:11px;letter-spacing:-.7px;line-height:1}
+.match-side .team-emblem{width:35px;height:35px}.match-side .team-text{font-size:11.6px;font-weight:580;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
+.match-mid{text-align:center}.match-score{font-size:19px;font-weight:760;letter-spacing:-.4px;font-variant-numeric:tabular-nums;white-space:nowrap}.match-score.upcoming{color:#A1A4AA;font-size:18px}.score-win{color:var(--green)}.match-state{font-size:10.5px;color:#9699A0;margin-top:7px;white-space:nowrap}.match-state.live{color:var(--red);font-weight:700}.match-state.coming{color:var(--blue)}
+.row-icon-btn{width:32px;height:38px;border:0;background:none;color:#A5A8AD;display:grid;place-items:center;border-radius:11px}.row-icon-btn.active{color:#277D63}.row-icon-btn:active{background:#F1F2F3}
+.empty{background:#fff;border-radius:23px;padding:42px 16px;text-align:center;color:#8C8F95}.empty .empty-icon{margin:0 auto 15px;width:48px;height:48px;border-radius:17px;display:grid;place-items:center;background:#F4F4F5}.empty b{display:block;font-size:14px;color:#52565C;margin-bottom:8px}.empty p{font-size:12px;line-height:1.8;margin:0}
+.month-select{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 6px 5px}.month-select h2{font-size:24px;font-weight:740;letter-spacing:-.8px;margin:0}.circle-control{border:0;width:37px;height:37px;background:#EEEFF0;display:grid;place-items:center;border-radius:50%}.month-hint{color:#94979D;font-size:12px;margin:7px 6px 13px}
+.tourney-entry{width:100%;border:0;background:#fff;display:flex;align-items:center;gap:12px;text-align:left;padding:16px 13px;border-top:1px solid #F1F1F2}.tourney-entry:first-child{border-top:0}.tourney-entry .event-emblem{width:46px;height:46px;border-radius:16px}.tourney-title{font-size:14px;font-weight:680;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.tourney-meta{font-size:11px;color:#91959B;margin-top:7px}.tourney-state{font-size:10.5px;margin-top:7px;color:#29836B}
+.search-field{height:49px;display:flex;align-items:center;gap:10px;padding:0 14px;background:#EDEEEF;border-radius:17px;color:#888D93;margin:8px 0 7px}.search-field input{width:100%;min-width:0;border:0;background:transparent;outline:0;font-size:14px;color:#232428}.search-field input::placeholder{color:#A0A3A8}
+.team-feature{background:#fff;border-radius:23px;padding:17px 15px;margin:12px 0 15px}.team-feature-title{font-size:12px;font-weight:680;color:#82858B;margin-bottom:13px}.avatar-row{display:flex;align-items:center;gap:9px}.avatar-row .team-emblem{width:44px;height:44px;border-radius:15px}.small-meta{font-size:11px;color:#9B9DA3;margin-top:5px}
+.list-card{background:white;border-radius:23px;overflow:hidden}.team-list-item{min-height:80px;padding:13px 13px;display:flex;align-items:center;gap:11px;border-bottom:1px solid #F2F2F3;cursor:pointer}.team-list-item:last-child{border-bottom:0}.team-list-item:active{background:#FBFBFB}.rank-number{width:24px;font-variant-numeric:tabular-nums;font-size:13px;text-align:center;font-weight:750;color:#7C7F84}.rank-number.top{color:#222426}.team-list-item .team-emblem{width:43px;height:43px;border-radius:14px}.team-item-copy{min-width:0;flex:1}.team-item-name{font-weight:720;font-size:14px;letter-spacing:-.2px}.team-item-meta{font-size:11px;color:#9A9DA3;margin-top:6px}.team-list-points{text-align:right;margin-left:auto}.team-list-points strong{display:block;font-weight:750;font-size:13px;font-variant-numeric:tabular-nums}.team-list-points small{display:block;color:#A0A3A8;font-size:10px;margin-top:5px}
+.follow-button{border:0;width:33px;height:34px;display:grid;place-items:center;border-radius:12px;background:#F4F4F5;color:#A1A5A9;flex:none}.follow-button.on{background:var(--green-bg);color:var(--green)}
+.segment{display:grid;grid-template-columns:repeat(2,1fr);background:#EBEBED;border-radius:16px;padding:4px;gap:3px;margin:10px 0 13px}.segment button{border:0;background:transparent;border-radius:13px;padding:11px;color:#898C92;font-size:13px;font-weight:680}.segment button.active{background:#fff;color:#202125;box-shadow:0 2px 5px #10111509}
+.region-chips{display:flex;gap:7px;overflow-x:auto;margin:0 0 15px}.region-chips button{border:0;background:#EDEDEF;color:#8B8E95;border-radius:999px;padding:8px 14px;font-size:12px;font-weight:580;white-space:nowrap}.region-chips button.active{background:#303236;color:#fff}
+.rank-summary{display:flex;justify-content:space-between;align-items:center;margin:9px 5px 11px;font-size:11px;color:#95989E}.ranking-row{display:flex;align-items:center;gap:11px;min-height:77px;padding:12px 14px;border-bottom:1px solid #F2F2F3;cursor:pointer}.ranking-row:last-child{border:0}.ranking-row .team-emblem{width:40px;height:40px;border-radius:13px}.ranking-row .rank-number{width:27px;font-size:15px}.rank-team{flex:1;min-width:0}.rank-team strong{font-size:14px}.rank-team small{display:block;margin-top:6px;font-size:11px;color:#979BA0}.ranking-point{text-align:right;font-size:13px;font-weight:800;font-variant-numeric:tabular-nums}.ranking-point span{display:block;color:#ACAFB3;font-size:10px;font-weight:500;margin-top:5px}.movement{display:flex;align-items:center;gap:2px;font-size:10px;font-weight:700}.movement.up{color:#27876A}.movement.down{color:#D36F64}.movement.flat{color:#9B9EA4}
+.profile-hero{padding:18px 17px 18px;display:flex;align-items:center;gap:13px}.profile-avatar{width:52px;height:52px;border-radius:19px;background:#EEEFF0;color:#4B4E54;display:grid;place-items:center}.profile-hero b{font-size:17px}.profile-hero small{display:block;color:#9B9EA3;margin-top:7px;font-size:11px}.group-heading{font-size:13px;color:#999DA3;margin:21px 6px 10px;font-weight:700}
+.setting-row{border-bottom:1px solid #F1F1F2;min-height:62px;padding:13px 14px;display:flex;align-items:center;gap:12px;text-align:left;width:100%;background:transparent;border-left:0;border-right:0;border-top:0}.setting-row:last-child{border-bottom:0}.setting-symbol{width:37px;height:37px;border-radius:13px;background:#F3F3F4;color:#55585E;display:grid;place-items:center}.setting-copy{flex:1;min-width:0}.setting-copy strong{display:block;font-size:13px;font-weight:670}.setting-copy small{color:#A0A3A8;font-size:11px;margin-top:5px;display:block}.setting-trailing{font-size:11px;color:#92969B;display:flex;gap:5px;align-items:center}
+.style-options{display:flex;gap:10px;padding:13px 14px 16px}.style-option{flex:1;border:1px solid #ECEDEF;border-radius:16px;background:white;padding:12px 7px 11px;display:flex;align-items:center;flex-direction:column;gap:8px;font-size:12px;color:#8F9298}.style-option.active{border-color:#C9CDCF;color:#242629;background:#FAFAFA;font-weight:700}.style-thumb{height:44px;width:72px;background:#F3F3F5;border-radius:9px;position:relative;overflow:hidden}.style-thumb:after{content:"";position:absolute;bottom:0;left:0;right:0;height:13px;background:#fff;border-top:1px solid #ddd}.style-option[data-style="floating"] .style-thumb:after{bottom:3px;left:5px;right:5px;border:0;border-radius:999px;box-shadow:0 1px 3px #0002}
+.detail-screen{position:absolute;inset:0;background:var(--bg);z-index:14;display:flex;flex-direction:column;animation:slide-in .18s ease both}
+@keyframes slide-in{from{opacity:.75;transform:translateX(12px)}to{opacity:1;transform:translateX(0)}}
+.detail-header{display:flex;align-items:center;gap:9px;min-height:70px;flex:none;padding:9px 14px 0;background:var(--bg);z-index:2}
+.detail-header-title{font-size:16px;font-weight:710;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;flex:1}.detail-header .icon-button{width:39px;height:40px}.detail-body{overflow-y:auto;min-height:0;flex:1;padding:6px 16px calc(30px + var(--safe))}
+.detail-body .surface{margin-top:12px}.detail-body .surface:first-child{margin-top:0}
+.detail-subheading{font-size:15px;font-weight:740;margin:20px 5px 10px;letter-spacing:-.3px}
+.detail-note{font-size:11px;color:#A0A3A9;padding:12px 6px;line-height:1.6}
+.detail-tabs{display:flex;gap:6px;overflow-x:auto;padding:10px 0 12px}.detail-tab{white-space:nowrap;border:0;background:#EBEBED;color:#898C92;font-size:12px;font-weight:650;border-radius:999px;padding:10px 15px}.detail-tab.active{background:#27292C;color:#fff}
+.match-hero{padding:18px 13px 18px}.match-event-line{display:flex;align-items:center;justify-content:center;gap:6px;font-size:12px;color:#91959B;margin-bottom:17px}.hero-teams{display:grid;grid-template-columns:minmax(0,1fr) 104px minmax(0,1fr);gap:5px;align-items:center;text-align:center}.hero-side{min-width:0;display:flex;flex-direction:column;align-items:center;gap:9px;font-size:13px;font-weight:700}.hero-side .team-emblem{width:66px;height:66px;border-radius:21px;font-size:20px}.hero-side button{border:0;background:none;font-weight:700;font-size:13px;padding:4px;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hero-score{font-size:30px;font-weight:810;font-variant-numeric:tabular-nums;white-space:nowrap;letter-spacing:-1px}.hero-meta{font-size:11px;color:#95999E;margin-top:8px}.status-pill{border-radius:8px;padding:5px 8px;font-size:10.5px;font-weight:730}.status-pill.live{background:var(--red-bg);color:var(--red)}.status-pill.ended{background:#F2F2F3;color:#8B8E93}.status-pill.coming{background:var(--blue-bg);color:var(--blue)}
+.detail-actions{display:flex;justify-content:center;gap:9px;margin-top:20px}.action-pill{display:flex;align-items:center;justify-content:center;gap:7px;border:0;padding:10px 16px;border-radius:999px;background:#F2F2F3;color:#666970;font-size:12px;font-weight:650}.action-pill.active{background:#E8F4EF;color:#267D63}
+.map-tile{padding:13px 14px;display:flex;align-items:center;gap:9px;border-bottom:1px solid #F1F1F2}.map-tile:last-child{border-bottom:0}.map-name{font-size:13px;font-weight:710}.map-sub{font-size:10.5px;color:#999CA2;margin-top:6px}.map-side-score{margin-left:auto;display:flex;align-items:center;gap:9px;font-weight:760;font-size:15px;font-variant-numeric:tabular-nums}.map-status{border:0;background:#F0F0F2;color:#82858B;padding:6px 8px;border-radius:8px;font-size:10px}
+.table-responsive{overflow-x:auto}.stats-table{width:100%;border-collapse:collapse;min-width:330px;text-align:right;font-variant-numeric:tabular-nums}.stats-table th{color:#A0A3A9;font-size:10px;font-weight:600;padding:11px 10px;border-bottom:1px solid #F1F2F2}.stats-table th:first-child,.stats-table td:first-child{text-align:left}.stats-table td{padding:12px 10px;border-bottom:1px solid #F5F5F6;font-size:12px}.stats-table tr:last-child td{border:0}.stats-table .player-name{font-weight:700;color:#3A3D41}.stats-table .rating{font-weight:800;color:#287D61}.stats-label{padding:14px 14px 4px;font-size:12px;font-weight:720;color:#52565C}
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}.stat-tile{background:#F7F7F8;border-radius:14px;min-height:79px;text-align:center;display:flex;flex-direction:column;justify-content:center;gap:7px}.stat-tile strong{font-size:19px;font-weight:780;font-variant-numeric:tabular-nums}.stat-tile small{font-size:10px;color:#9DA0A6}
+.team-hero{padding:21px 16px 16px;display:flex;flex-direction:column;align-items:center;text-align:center}.team-hero .team-emblem{width:79px;height:79px;border-radius:26px;font-size:25px;margin-bottom:12px}.team-hero h2{margin:0;font-size:23px;font-weight:780;letter-spacing:-.5px}.team-hero .team-country{font-size:12px;color:#8E9298;margin:8px 0 19px}
+.team-hero .stat-grid{width:100%}.team-hero .detail-actions{margin-top:16px}
+.player-row{width:100%;border:0;background:#fff;padding:13px 13px;display:flex;align-items:center;gap:12px;text-align:left;border-bottom:1px solid #F1F1F2}.player-row:last-child{border:0}.player-portrait{width:48px;height:48px;border-radius:15px;background:#EFF0F2;color:#646A71;font-size:15px;font-weight:800;display:grid;place-items:center}.player-row-copy{min-width:0;flex:1}.player-row-copy strong{font-size:13px;display:block}.player-row-copy small{font-size:10.5px;color:#999DA4;display:block;margin-top:7px}.player-rating{text-align:right}.player-rating b{display:block;font-size:14px}.player-rating small{display:block;font-size:10px;color:#A2A5AB;margin-top:5px}
+.data-bar-row{padding:12px 14px;border-bottom:1px solid #F2F2F3}.data-bar-row:last-child{border:0}.data-bar-label{display:flex;align-items:center;justify-content:space-between;font-size:12px;margin-bottom:9px}.data-bar-label b{font-variant-numeric:tabular-nums}.data-track{height:7px;border-radius:20px;background:#EDEFF0;overflow:hidden}.data-fill{height:100%;border-radius:20px;background:#6D9C85}
+.news-feature{border-radius:23px;overflow:hidden;background:#fff}.news-cover{height:140px;background:linear-gradient(135deg,#E9EDEF,#F8F8F9 58%,#DFE5E9);position:relative;display:flex;align-items:flex-end;padding:16px;color:#484F54}.cover-symbol{position:absolute;right:19px;top:20px;width:81px;height:81px;border-radius:29px;background:#FFFFFFA8;display:grid;place-items:center;color:#A5ADB2;transform:rotate(-12deg)}.news-feature-copy{padding:17px}.news-eyebrow{font-size:11px;color:#91969C}.news-headline{font-size:17px;line-height:1.5;font-weight:750;letter-spacing:-.25px;margin:7px 0}.news-summary{font-size:12px;color:#999DA3;line-height:1.65}
+.news-row{width:100%;display:flex;gap:12px;align-items:center;padding:16px 13px;background:#fff;border:0;border-bottom:1px solid #F0F1F2;text-align:left}.news-row:last-child{border-bottom:0}.news-row-thumb{width:71px;height:71px;flex:none;border-radius:17px;background:var(--news-bg,#EDEFF1);display:grid;place-items:center;color:#747E86}.news-row-copy{flex:1;min-width:0}.news-row-title{font-size:13.5px;line-height:1.5;font-weight:700}.news-row-meta{font-size:11px;color:#A0A4A8;margin-top:8px}.news-article-title{font-size:24px;line-height:1.38;font-weight:790;letter-spacing:-.7px;margin:14px 0}.article-body{font-size:14px;line-height:2.0;color:#4E5157;padding:13px 18px 19px}.article-body p{margin:0 0 16px}.article-body p:last-child{margin:0}.article-lead{font-weight:600;color:#292C30}.article-figure{height:180px;background:linear-gradient(135deg,#ECEEF0,#F8F8F9);display:grid;place-items:center;color:#ADB4B9;border-radius:23px;margin:14px 0}
+.transfer-entry{display:flex;align-items:center;gap:12px;padding:14px 12px;border-bottom:1px solid #F1F1F2}.transfer-entry:last-child{border:0}.transfer-date{font-size:11px;color:#A1A4A8;margin:0 0 4px}.transfer-move{font-size:12.5px;line-height:1.6;font-weight:680}.transfer-sub{font-size:10.5px;color:#989BA1;margin-top:5px}
+.bracket-scroller{overflow-x:auto;padding:15px;display:flex;align-items:stretch;gap:15px}.bracket-column{min-width:192px;display:flex;flex-direction:column;gap:12px}.bracket-head{font-size:11px;color:#999DA2;font-weight:700;padding:2px 3px}.bracket-match{border-radius:14px;background:#F6F6F7;padding:12px}.bracket-teams{display:flex;flex-direction:column;gap:11px}.bracket-line{display:flex;align-items:center;justify-content:space-between;font-size:11px;font-weight:650}.bracket-line span:last-child{font-variant-numeric:tabular-nums}.bracket-final{margin-top:28px}
+.modal-backdrop{position:absolute;inset:0;z-index:22;background:#181B2280;display:flex;align-items:flex-end}.modal-sheet{width:100%;border-radius:28px 28px 0 0;background:var(--bg);padding:13px 16px calc(22px + var(--safe));max-height:80%;overflow:auto;animation:sheet-up .2s ease}
+@keyframes sheet-up{from{transform:translateY(35px);opacity:.6}to{transform:translateY(0);opacity:1}}.sheet-handle{width:38px;height:5px;background:#D7D8DC;border-radius:8px;margin:0 auto 16px}.sheet-heading{font-size:17px;font-weight:750;margin:3px 2px 18px}.modal-option{padding:17px 13px;display:flex;gap:12px;align-items:center;border-bottom:1px solid #EFF0F1;width:100%;background:#fff;border-left:0;border-right:0;border-top:0;text-align:left;font-size:13px}.modal-option:first-of-type{border-radius:18px 18px 0 0}.modal-option:last-of-type{border:0;border-radius:0 0 18px 18px}.modal-option span{flex:1}
+.toast{position:absolute;left:50%;bottom:calc(95px + var(--safe));z-index:99;transform:translate(-50%,15px);opacity:0;pointer-events:none;transition:.2s;background:#34363A;color:white;font-size:12px;padding:11px 17px;border-radius:999px;box-shadow:0 8px 22px #0002;white-space:nowrap;max-width:95%;overflow:hidden;text-overflow:ellipsis}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:364px){.scroll-area{padding-left:12px;padding-right:12px}.dates-holder{margin:0 -12px}.dates-strip{padding:0 12px}.match-row{grid-template-columns:38px minmax(0,1fr) 63px minmax(0,1fr) 28px;gap:2px;padding-left:10px;padding-right:8px}.team-text{font-size:11px}.match-score{font-size:17px}.match-row .team-emblem{width:30px;height:30px}.event-head{padding-left:10px;padding-right:9px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head><body>
+<div class="app nav-floating" id="app">
+ <header class="main-header" id="top-header"></header>
+ <main class="scroll-area" id="page-scroll"></main>
+ <nav class="bottom-nav" id="bottom-nav" aria-label="主要页面"></nav>
+ <div class="detail-screen" id="detail-root" style="display:none"></div>
+ <div id="modal-root"></div>
+ <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</div>
+<script>(()=>{'use strict';
+const ICONS={
+  search:'<circle cx="11" cy="11" r="7"/><path d="m20 20-4.2-4.2"/>',
+  news:'<rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 9h8M8 13h8M8 17h5"/>',
+  bell:'<path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M10 21h4"/>',
+  trophy:'<path d="M8 21h8M12 17v4M7 4h10v6a5 5 0 0 1-10 0V4Z"/><path d="M7 6H4v3a4 4 0 0 0 4 4M17 6h3v3a4 4 0 0 1-4 4"/>',
+  calendar:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18M8 14h3M8 18h3M15 14h2"/>',
+  teams:'<path d="M5 20V5l7-3 7 3v15l-7 3-7-3Z"/><path d="m9 12 2 2 4-5"/>',
+  ranking:'<path d="M3 20h18M5 20v-7h4v7M10 20V5h4v15M15 20v-9h4v9"/>',
+  user:'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-5 3-7 8-7s8 2 8 7"/>',
+  back:'<path d="m15 18-6-6 6-6"/>',right:'<path d="m9 18 6-6-6-6"/>',up:'<path d="m6 15 6-6 6 6"/>',down:'<path d="m6 9 6 6 6-6"/>',
+  close:'<path d="M5 5l14 14M19 5 5 19"/>',
+  star:'<path d="m12 2 3.15 6.4 7.07 1.03-5.11 4.98 1.2 7.04L12 18.14l-6.31 3.31 1.2-7.04-5.11-4.98 7.07-1.03L12 2Z"/>',
+  check:'<path d="m4 12 5 5 11-11"/>',info:'<circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7h.01"/>',
+  clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+  sliders:'<path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="2" fill="white"/><circle cx="16" cy="17" r="2" fill="white"/>',
+  globe:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c-6 5-6 13 0 18M12 3c6 5 6 13 0 18"/>',
+  bookmark:'<path d="M5 4h14v18l-7-5-7 5V4Z"/>',
+  refresh:'<path d="M20 11a8 8 0 0 0-14-5L3 9M3 3v6h6M4 13a8 8 0 0 0 14 5l3-3M21 21v-6h-6"/>',
+  spark:'<path d="m12 2 2.6 7.4L22 12l-7.4 2.6L12 22l-2.6-7.4L2 12l7.4-2.6L12 2Z"/>',
+  arrowUp:'<path d="m7 14 5-5 5 5M12 9v9"/>',arrowDown:'<path d="m7 10 5 5 5-5M12 6v9"/>',
+  map:'<path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3V6ZM9 3v15M15 6v15"/>',
+  users:'<circle cx="9" cy="8" r="3"/><path d="M2 20c0-5 3-7 7-7s7 2 7 7M16 5a3 3 0 0 1 0 6M19 13c2 1 3 3 3 7"/>',
+  switch:'<path d="M4 7h16m-5-4 5 4-5 4M20 17H4m5-4-5 4 5 4"/>',
+  arrowRight:'<path d="M4 12h16m-6-6 6 6-6 6"/>',
+  chart:'<path d="M3 21h18M5 17l5-6 4 3 5-9"/><path d="M16 5h3v3"/>',
+  heart:'<path d="M20 8c0 5-8 11-8 11S4 13 4 8a4 4 0 0 1 8-2 4 4 0 0 1 8 2Z"/>',
+  home:'<path d="m3 11 9-8 9 8v9H3v-9Z"/><path d="M9 20v-6h6v6"/>',
+  pulse:'<path d="M2 12h5l3-7 4 14 3-7h5"/>',
+  more:'<circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/>',
+  external:'<path d="M14 4h6v6M20 4l-9 9"/><path d="M20 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h5"/>',
+  flag:'<path d="M5 3v19M5 4c5-4 9 4 15 0v12c-6 4-10-4-15 0"/>',
+  edit:'<rect x="3" y="4" width="18" height="17" rx="3"/><path d="M7 10h10M7 14h8"/>'
+};
+const icon=(key,size=20,stroke=1.8)=>`<svg aria-hidden="true" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${stroke}" stroke-linecap="round" stroke-linejoin="round">${ICONS[key]||ICONS.info}</svg>`;
+const escapeHTML=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const txt=escapeHTML;
+const safeStorage={get(k,fallback){try{let raw=localStorage.getItem('matchscope_verified_'+k);return raw===null?fallback:JSON.parse(raw)}catch{return fallback}},set(k,v){try{localStorage.setItem('matchscope_verified_'+k,JSON.stringify(v))}catch{}}};
+const TZ='Asia/Shanghai';
+function todayInChina(){let p=new Intl.DateTimeFormat('en-CA',{year:'numeric',month:'2-digit',day:'2-digit',timeZone:TZ}).formatToParts(new Date());let x=Object.fromEntries(p.map(t=>[t.type,t.value]));return `${x.year}-${x.month}-${x.day}`}
+const TODAY=todayInChina();
+const parseDate=s=>{const[y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d,12)};
+const ISO=d=>[d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-');
+const addDays=(s,n)=>{const d=parseDate(s);d.setDate(d.getDate()+n);return ISO(d)};
+const daysDiff=(a,b)=>Math.round((parseDate(a)-parseDate(b))/86400000);
+const WEEK=['周日','周一','周二','周三','周四','周五','周六'];
+const dateLabel=s=>{const d=parseDate(s);return `${d.getMonth()+1}月${d.getDate()}日`};
+const shortDate=s=>s.slice(5).replace('-','.');
+const SEED_TEAMS=[
+['vitality','Vitality','V','欧洲','法国','🇫🇷','#FFF1C9','#765825',1,996,1993,2],
+['falcons','Falcons','F','欧洲','沙特阿拉伯','🇸🇦','#DBF6EA','#137858',2,955,1941,3],
+['spirit','Spirit','S','欧洲','乌克兰','🇺🇦','#E5EAFE','#5267A5',3,907,1911,-1],
+['mouz','MOUZ','M','欧洲','德国','🇩🇪','#F9E8E5','#BA5550',4,882,1883,1],
+['navi','NAVI','N','欧洲','乌克兰','🇺🇦','#FFF0B4','#68571F',5,840,1829,-2],
+['g2','G2','G2','欧洲','欧洲','🇪🇺','#E7E8EA','#3C4249',6,803,1788,0],
+['furia','FURIA','F','美洲','巴西','🇧🇷','#E8EBEE','#23292D',7,767,1756,1],
+['mongolz','The MongolZ','MZ','亚洲','蒙古','🇲🇳','#FBE6DF','#AC4B35',8,722,1724,4],
+['aurora','Aurora','A','欧洲','土耳其','🇹🇷','#DCF6F2','#1E8C80',9,680,1661,-1],
+['faze','FaZe','FZ','欧洲','欧洲','🇪🇺','#FAE2E2','#AE494C',10,647,1652,-2],
+['liquid','Liquid','L','美洲','美国','🇺🇸','#E1EFFC','#477FAB',11,612,1620,0],
+['tyloo','TYLOO','T','亚洲','中国','🇨🇳','#F8E5E0','#B25441',12,590,1594,2],
+['astralis','Astralis','AS','欧洲','丹麦','🇩🇰','#F6E1E0','#A84646',13,558,1551,-1],
+['pain','paiN','P','美洲','巴西','🇧🇷','#FFE7E4','#BF5552',14,523,1510,1],
+['heroic','HEROIC','H','欧洲','挪威','🇳🇴','#FCE7E0','#B16A44',15,486,1472,2],
+['3dmax','3DMAX','3D','欧洲','法国','🇫🇷','#E8E9FB','#6566A5',16,460,1445,0],
+['imperial','Imperial','IM','美洲','巴西','🇧🇷','#F0F0E1','#7D7838',17,422,1415,-3],
+['9z','9z','9Z','美洲','阿根廷','🇦🇷','#F2E6FB','#8251AE',18,399,1376,4],
+['b8','B8','B8','欧洲','乌克兰','🇺🇦','#FCE6E9','#B4445C',19,360,1321,1],
+['wildcard','Wildcard','W','美洲','美国','🇺🇸','#E4EAF3','#607EAD',20,321,1292,0],
+['rare','Rare Atom','RA','亚洲','中国','🇨🇳','#EDE7FA','#7655B5',21,292,1264,3],
+['flyquest','FlyQuest','FQ','亚洲','澳大利亚','🇦🇺','#E2F0E6','#56886B',22,261,1240,-2]
+];
+const TEAMS=SEED_TEAMS.map(([id,name,tag,region,country,flag,bg,fg,hltv,hlPoints,vrs,trend],i)=>({id,name,tag,region,country,flag,bg,fg,hltv,hlPoints,vrs,trend,
+  form:['胜','胜','负','胜','胜'].map((_,j)=>(i+j)%4===0?'负':'胜'),
+  mapRates:{Mirage:Math.max(38,71-i),Inferno:Math.max(36,65+(i%7)-Math.floor(i/3)),Nuke:Math.max(35,61+(i%5)-Math.floor(i/2)),Ancient:Math.max(35,67-i),Dust2:Math.max(39,62+(i%6)-Math.floor(i/3))}
+}));
+const teamById=Object.fromEntries(TEAMS.map(t=>[t.id,t]));
+const PLAYER_STEMS=['nova','riven','kairo','evo','milo','zenn','arc','frost','lex','vex','nyx','dawn','rio','flux','loki','vale','moss','dusk','zero','rune','cyro','axis'];
+const PLAYERS=[];
+for(const [i,t] of TEAMS.entries()){
+ t.players=Array.from({length:5},(_,j)=>{const name=[''+PLAYER_STEMS[i%PLAYER_STEMS.length]+(j===0?'':'-'+['','x','z','r','m'][j]), 'rQ'+i,'n0'+i,'eL'+i,'kin'+i][j];
+ const p={id:`${t.id}-p${j}`,name,teamId:t.id,rating:Number((1.24-(i*.006)+(4-j)*.022).toFixed(2)),kd:Number((1.22-i*.007+j*.018).toFixed(2)),adr:Math.round(83-i*.38+j*1.5),kast:Math.round(74-i*.22+j*.6),hs:Math.round(44+i%6+j*2)};PLAYERS.push(p);return p.id;});
+}
+const playerById=Object.fromEntries(PLAYERS.map(p=>[p.id,p]));
+const EVENTS=[
+{id:'iem',name:'IEM 全球邀请赛 · 2026',short:'IEM',region:'欧洲 · 线下赛',level:'排名赛事',bg:'#E9ECF1',fg:'#515F70',prize:'$500,000',parties:['vitality','spirit','g2','mouz','navi','falcons','faze','aurora'],startDay:11,duration:10,accent:'#60778B'},
+{id:'blast',name:'BLAST 秋季挑战赛 · 2026',short:'BL',region:'欧洲 · 线下赛',level:'排名赛事',bg:'#FBE8E5',fg:'#C0574C',prize:'$350,000',parties:['falcons','navi','g2','spirit','liquid','furia','astralis','mouz'],startDay:14,duration:9,accent:'#D86A58'},
+{id:'thunder',name:'Thunderpick 世界系列赛 · 2026',short:'TP',region:'全球 · 线上赛',level:'排名赛事',bg:'#E8E9FF',fg:'#6762A8',prize:'$200,000',parties:['furia','mouz','aurora','faze','pain','3dmax','heroic','tyloo'],startDay:17,duration:10,accent:'#8F83C5'},
+{id:'asia',name:'亚洲冠军杯 · 2026',short:'AC',region:'亚洲 · 线下赛',level:'排名赛事',bg:'#E5F4F0',fg:'#448F79',prize:'$120,000',parties:['mongolz','tyloo','rare','flyquest','liquid','g2','navi','pain'],startDay:15,duration:8,accent:'#66A58F'},
+{id:'americas',name:'美洲职业联赛 · 2026',short:'AM',region:'美洲 · 线上赛',level:'非排名赛事',bg:'#FCEDD9',fg:'#A78350',prize:'$75,000',parties:['liquid','furia','pain','9z','imperial','wildcard','faze','heroic'],startDay:22,duration:6,accent:'#CBA16A'},
+{id:'elisa',name:'Elisa 冬季公开赛 · 2026',short:'EL',region:'欧洲 · 线上赛',level:'非排名赛事',bg:'#E4EDF8',fg:'#5A84A7',prize:'$50,000',parties:['3dmax','astralis','heroic','b8','aurora','navi','mouz','g2'],startDay:26,duration:9,accent:'#83A5CB'},
+{id:'pgl',name:'PGL 国际大师赛 · 2026',short:'PGL',region:'全球 · 线下赛',level:'排名赛事',bg:'#E6F4EA',fg:'#548669',prize:'$400,000',parties:['vitality','navi','spirit','falcons','mongolz','furia','liquid','mouz'],startDay:3,duration:8,accent:'#7FAE92'}
+];
+const eventById=Object.fromEntries(EVENTS.map(e=>[e.id,e]));
+// All of the following headlines, transfers, match results and scores are deliberately fictional UI samples.
+const NEWS=[
+{id:'n1',category:'战报',title:'模拟战报｜焦点对决打满三图，决胜图进入白热化阶段',description:'一场虚构的三图系列赛，用于展示地图战况、关键回合和赛后统计的新闻阅读体验。',time:'今天 · 10:30',icon:'trophy',bg:'#E8ECEF',body:['在本次演示赛事中，两支队伍在前两张地图上各拿下一分，将悬念保留到决胜图。','从回合分布来看，模拟数据中的中盘调整成为胜负走势的关键节点。经济局的选择、首杀转换效率与残局表现，都影响了最终结果。','这是一篇原创的虚构演示文章，所有战况、数据和事件均不对应真实比赛。']},
+{id:'n2',category:'转会',title:'模拟转会｜新赛季阵容变动观察：年轻选手获得首发机会',description:'关注转会、替补和教练调整，并在战队详情页关联历史变动。',time:'今天 · 09:15',icon:'switch',bg:'#F9E9E5',body:['转会市场往往会改变队伍的角色分工与地图偏好，本示例展示新闻与转会记录的联动方式。','正式版本将区分官方公告、消息人士报道和未经证实的传闻，并明确注明来源。','本文是虚构内容，仅用于演示排版与阅读体验。']},
+{id:'n3',category:'数据',title:'数据观察｜地图池、首杀率与近期状态，如何快速读懂一支战队',description:'用简洁的统计展示队伍近期地图表现与选手数据。',time:'昨天 · 19:00',icon:'chart',bg:'#E7F1EB',body:['在 CS2 赛事分析中，地图胜率、首杀成功率、进攻与防守转换效率具有不同的参考价值。','单一指标无法代表球队整体实力，应同时观察比赛样本数量、对手质量与赛事级别。','此文章展示未来可以加入的数据解读模块，目前所有数值均为模拟。']},
+{id:'n4',category:'快讯',title:'赛程速递｜本周多项 CS2 系列赛事进入淘汰赛阶段',description:'自动整理你关注的赛事和每天的对阵，让查阅更加直观。',time:'昨天 · 12:20',icon:'calendar',bg:'#E6EDF6',body:['这是一篇演示快讯，展示赛事信息可以如何以简短的中文内容提供给读者。','未来可以把当天赛程、即将开始的对阵与关注战队放入新闻中心。','文中没有引用或复制 HLTV 的新闻内容。']},
+{id:'n5',category:'深度',title:'专题｜从阵容稳定性到地图选择，构建更有用的战队页面',description:'让战队详情既能快速浏览，也能深入查看个人和地图统计。',time:'10月 · 专题',icon:'users',bg:'#F0EBF8',body:['一支战队的资料页，应能在一个页面内快速展示阵容、排名、近期成绩和比赛入口。','对于更有经验的玩家，可以提供地图池、不同战术侧的数据与选手个人表现。','MatchScope 将采用分层呈现，避免把所有统计压进同一个列表。']},
+{id:'n6',category:'转会',title:'模拟转会｜替补选手与自由人的市场动向',description:'展示转会时间线、原战队、目标战队与来源类型。',time:'10月 · 08:00',icon:'switch',bg:'#F9ECE5',body:['这里是专门用于测试转会新闻的模拟文章。','未来转会中心可以追踪官方公告与真实的选手变动记录。','当前选手姓名与流动事件均为虚构示例。']}
+];
+const newsById=Object.fromEntries(NEWS.map(n=>[n.id,n]));
+const TRANSFERS=[
+ {id:'t1',name:'nova',from:'模拟学院队 A',to:'模拟一线队 B',type:'转入 · 虚构',date:'10.18'},
+ {id:'t2',name:'kairo',from:'模拟战队 C',to:'自由选手',type:'离队 · 虚构',date:'10.16'},
+ {id:'t3',name:'vex',from:'替补名单',to:'模拟战队 D',type:'替补 · 虚构',date:'10.14'},
+ {id:'t4',name:'riven',from:'模拟战队 E',to:'模拟战队 F',type:'租借 · 虚构',date:'10.12'}
+];
+const NAV=[['matches','赛事','trophy'],['calendar','赛程','calendar'],['teams','战队','teams'],['rankings','排名','ranking'],['profile','我的','user']];
+const state={tab:'matches',date:TODAY,month:TODAY.slice(0,7),matchFilter:'all',eventFilter:'all',teamFilter:'全部',teamQuery:'',rankKind:'hltv',region:'世界',newsFilter:'全部',detailTab:'overview',
+ following:safeStorage.get('following',['vitality','mongolz']),savedNews:safeStorage.get('savedNews',[]),reminders:safeStorage.get('reminders',[]),navStyle:safeStorage.get('navStyle','floating'),noticeOn:safeStorage.get('noticeOn',true),transferFilter:'全部',timezone:safeStorage.get('timezone','北京时间（UTC+8）'),collapsed:new Set(),route:null,modal:null,liveIncrements:{}};
+const $=sel=>document.querySelector(sel);
+const teamLogo=(t,extra='')=>`<span class="team-emblem ${extra}" style="--t-bg:${t.bg};--t-fg:${t.fg}" aria-hidden="true">${txt(t.tag)}</span>`;
+const eventLogo=e=>`<span class="event-emblem" style="--e-bg:${e.bg};--e-fg:${e.fg}" aria-hidden="true">${txt(e.short)}</span>`;
+const SOURCE_LINKS={
+ matches:'https://www.hltv.org/matches',results:'https://www.hltv.org/results',events:'https://www.hltv.org/events',
+ eventDetail:'https://www.hltv.org/events/9430/hotspawn-showdown-2026-finals',
+ matchDetail:'https://www.hltv.org/matches/2389644/falcons-vs-aurora-iem-krakw-2026',
+ team:'https://www.hltv.org/team/9565/vitality',teamMaps:'https://www.hltv.org/stats/teams/maps/9565/vitality',
+ player:'https://www.hltv.org/player/11893/zywoo',playerStats:'https://www.hltv.org/stats/players/11893/zywoo',
+ ranking:'https://www.hltv.org/ranking/teams',vrs:'https://www.hltv.org/valve-ranking/teams',
+ news:'https://www.hltv.org/news/archive',transfers:'https://www.hltv.org/transfers',terms:'https://www.hltv.org/terms'
+};
+const sourceLink=(url,label='查看 HLTV 示例页面')=>`<a href="${url}" target="_blank" rel="noopener noreferrer" style="color:#4F7483;font-size:11px;text-decoration:none;border-bottom:1px solid #C2D3D8;white-space:nowrap">${txt(label)} ↗</a>`;
+const sourceFoot=(source,description)=>`<div style="margin:11px 4px 15px;color:#8B9096;font-size:11px;line-height:1.75">字段依据：${txt(description)} · ${sourceLink(SOURCE_LINKS[source])}<div style="margin-top:4px">仅核实该类字段在 HLTV 网页可见；未获得官方数据接口或转载授权。</div></div>`;
+const MAP_POOL=['Mirage','Inferno','Nuke','Dust2','Ancient'];
+const halfText=(row)=>{if(row.status==='coming'||row.status==='live')return '半场分暂不可用（演示）';if(row.a==null||row.b==null)return '—';const firstA=Math.min(row.a,7),firstB=Math.min(row.b,12-firstA);return `半场：${firstA}:${firstB} / ${row.a-firstA}:${row.b-firstB}`;};
+
+const fakeNote=(text='所有赛程、积分、战况与新闻均为模拟演示数据')=>`<div class="demo-strip">${icon('info',13)}<span>${txt(text)}</span></div>`;
+const toastMsg=m=>{const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(toastMsg.timer);toastMsg.timer=setTimeout(()=>t.classList.remove('show'),2300)};
+function eventOccurrences(month){let [year,m]=month.split('-').map(Number);let arr=[];
+ for(const e of EVENTS){const start=new Date(year,m-1,Math.min(28,e.startDay),12);const end=new Date(start);end.setDate(end.getDate()+e.duration-1);
+ const st=ISO(start),en=ISO(end);const diff=daysDiff(TODAY,st);arr.push({...e,start:st,end:en,status:daysDiff(TODAY,st)<0?'coming':daysDiff(TODAY,en)>0?'ended':'live'});}
+ return arr.sort((a,b)=>a.start.localeCompare(b.start));}
+function eventAtDate(id,date){const e=eventById[id];if(!e)return null;const occ=eventOccurrences(date.slice(0,7)).find(x=>x.id===id);return occ;}
+function changeMonth(n){let [y,m]=state.month.split('-').map(Number);let d=new Date(y,m-1+n,1,12);state.month=ISO(d).slice(0,7);renderMain(true)}
+function generateDayMatches(date){const day=parseDate(date).getDate(),delta=daysDiff(date,TODAY);
+ const [year,month]=date.slice(0,7).split('-').map(Number),prior=ISO(new Date(year,month-2,1,12)).slice(0,7);
+ const activeEvents=[...eventOccurrences(date.slice(0,7)),...eventOccurrences(prior)].filter(e=>e.start<=date&&e.end>=date).sort((a,b)=>a.start.localeCompare(b.start));
+ return [...new Set(activeEvents.map(e=>e.id))].map((id,i)=>{const e=eventById[id],count=(i===0?3:2)+(i===2?1:0);
+ const matches=Array.from({length:count},(_,j)=>{
+  const n=(day*3+i*5+j*2)%e.parties.length;let a=e.parties[n],b=e.parties[(n+3+j)%e.parties.length];if(a===b)b=e.parties[(n+1)%e.parties.length];
+  const status=delta<0?'ended':delta>0?'coming':(['ended','live','coming','live','coming','ended','coming','ended','live','coming','ended'][i*3+j]||'coming');
+  const time=['01:00','14:30','20:30','18:00','23:00','11:00','19:30','22:00','16:15','21:15','23:30'][i*3+j]||'19:00';
+  const bo=(j===2&&i===0)?'BO5':'BO3';const mapNames=bo==='BO5'?MAP_POOL:MAP_POOL.slice(0,3);
+  let winners=[];if(status==='ended'){winners=bo==='BO5'?['a','b','a','a']:((j+i)%2===0?['a','b','a']:['b','b']);}
+  else if(status==='live'){winners=bo==='BO5'?['a','b','a']:j%2===0?['a']:['a','b'];}
+  let maps=mapNames.map((name,k)=>{
+   if(status==='coming'||k>winners.length)return {name,a:null,b:null,status:'coming'};
+   if(status==='live'&&k===winners.length)return {name,a:7+(j%2),b:6,status:'live'};
+   if(k>=winners.length)return {name,a:null,b:null,status:'coming'};
+   const aWon=winners[k]==='a',scoreA=aWon?13:9+(k%3),scoreB=aWon?9+(k%3):13;
+   return {name,a:scoreA,b:scoreB,status:'ended'};
+  });
+  let series=status==='coming'?null:[winners.filter(x=>x==='a').length,winners.filter(x=>x==='b').length];
+  return {id:`${date}__${id}__${j}`,date,eventId:id,a,b,bo,time,status,series,score:series?series.join(' : '):'VS',maps,
+    round:status==='live'?'当前地图进行中':status==='ended'?'比赛结束':'尚未开始',ratingVersion:'3.0'};
+ });return {event:e,matches};});
+}
+function findMatch(id){let bits=id.split('__');if(bits.length!==3)return null;return generateDayMatches(bits[0]).find(x=>x.event.id===bits[1])?.matches[Number(bits[2])]||null}
+function followTeam(id){if(!teamById[id])return;const exists=state.following.includes(id);state.following=exists?state.following.filter(v=>v!==id):[...state.following,id];safeStorage.set('following',state.following);toastMsg(exists?'已取消关注':'已关注战队（保存在本机）');refreshCurrent()}
+function toggleReminder(id){const exists=state.reminders.includes(id);state.reminders=exists?state.reminders.filter(v=>v!==id):[...state.reminders,id];safeStorage.set('reminders',state.reminders);toastMsg(exists?'已取消比赛提醒':'已加入本地提醒清单（无系统推送）');refreshCurrent()}
+function toggleSaveNews(id){const exists=state.savedNews.includes(id);state.savedNews=exists?state.savedNews.filter(v=>v!==id):[...state.savedNews,id];safeStorage.set('savedNews',state.savedNews);toastMsg(exists?'已取消收藏':'已收藏文章');refreshCurrent()}
+function currentMainTabName(){return NAV.find(x=>x[0]===state.tab)?.[1]||'赛事'}
+function renderShell(){const top=$('#top-header');top.innerHTML=`<h1>${currentMainTabName()}</h1><div class="head-actions"><span class="mini-pill">模拟 · 已核对字段</span><button class="icon-button" data-action="open-news" aria-label="新闻资讯">${icon('news',21)}</button><button class="icon-button" data-action="search" aria-label="全局搜索">${icon('search',23)}</button></div>`;
+ $('#app').className=`app nav-${state.navStyle}`;
+ $('#bottom-nav').innerHTML=NAV.map(([id,name,glyph])=>`<button class="nav-button ${state.tab===id?'active':''}" data-action="nav" data-id="${id}" ${state.tab===id?'aria-current="page"':''} aria-label="${name}">${icon(glyph,22)}<span>${name}</span></button>`).join('');
+}
+function renderMain(resetScroll=false){renderShell();const sc=$('#page-scroll'),saved=sc.scrollTop;let view={matches:renderMatches,calendar:renderCalendar,teams:renderTeams,rankings:renderRankings,profile:renderProfile}[state.tab]();sc.innerHTML=view;if(resetScroll)sc.scrollTop=0;else sc.scrollTop=saved;
+ if(state.tab==='matches'){requestAnimationFrame(()=>{let chip=$('.date-button.selected');if(chip){const row=$('.dates-strip');row.scrollLeft=chip.offsetLeft-(row.clientWidth-chip.offsetWidth)/2}})} }
+function refreshCurrent(){if(state.route)renderDetail();else renderMain(false)}
+function renderDateStrip(){let chips=[];for(let d=-6;d<=8;d++){
+ const s=addDays(state.date,d),p=parseDate(s),isToday=s===TODAY;
+ chips.push(`<button class="date-button ${state.date===s?'selected':''} ${isToday?'today':''}" data-action="date" data-id="${s}" ${state.date===s?'aria-current="date"':''} aria-label="${txt(s)}${isToday?' 今天':''}"><span class="weekday">${isToday?'今天':WEEK[p.getDay()]}</span><span class="date-num">${p.getDate()}</span></button>`)}
+ return `<div class="dates-holder"><div class="dates-strip">${chips.join('')}</div></div>`}
+function chipSet(action,selected,options){return `<div class="chips" role="group" aria-label="筛选">${options.map(([id,title])=>`<button class="chip ${selected===id?'active':''}" data-action="${action}" data-id="${id}">${title}</button>`).join('')}</div>`}
+const STATUS={live:'进行中',coming:'未开始',ended:'已结束'};
+function scoreMarkup(m){if(m.status==='coming')return `<div class="match-score upcoming">VS</div>`;const scores=m.series||[0,0];return `<div class="match-score"><span class="${scores[0]>scores[1]?'score-win':''}">${scores[0]}</span><span style="color:#A5A8AC"> : </span><span class="${scores[1]>scores[0]?'score-win':''}">${scores[1]}</span></div>`}
+function renderMatchRow(m){let a=teamById[m.a],b=teamById[m.b],on=state.reminders.includes(m.id);return `<div class="match-row" data-action="open-match" data-id="${m.id}" role="button" tabindex="0" aria-label="${txt(a.name)} 对阵 ${txt(b.name)}，${txt(STATUS[m.status])}">
+ <div class="match-clock"><span class="time-value">${m.time}</span><span class="bo-label">${m.bo}</span></div>
+ <div class="match-side">${teamLogo(a)}<span class="team-text">${txt(a.name)}</span></div>
+ <div class="match-mid">${scoreMarkup(m)}<div class="match-state ${m.status}">${STATUS[m.status]}</div></div>
+ <div class="match-side">${teamLogo(b)}<span class="team-text">${txt(b.name)}</span></div>
+ <button class="row-icon-btn ${on?'active':''}" data-action="reminder" data-id="${m.id}" aria-label="${on?'取消提醒':'关注比赛'}" title="${on?'取消提醒':'关注比赛'}">${icon(on?'check':'bell',18)}</button>
+ </div>`}
+function renderMatches(){const p=parseDate(state.date),selected=state.date===TODAY?'今天':WEEK[p.getDay()];let groups=generateDayMatches(state.date);
+ const visible=groups.map(g=>({...g,matches:g.matches.filter(m=>state.matchFilter==='all'||m.status===state.matchFilter)})).filter(g=>g.matches.length);
+ const total=groups.reduce((a,g)=>a+g.matches.length,0);
+ return `${renderDateStrip()}<div class="day-head"><h2>${dateLabel(state.date)} <span class="sub" style="font-size:13px;font-weight:550">${selected}</span></h2><button class="date-action" data-action="pick-date">${icon('calendar',17)}选择日期</button><input id="native-date" class="input-date-hidden" type="date" value="${state.date}"></div>
+ ${chipSet('match-filter',state.matchFilter,[['all','全部比赛'],['live','进行中'],['coming','未开始'],['ended','已结束']])}
+ <div class="helper-top">当天 ${groups.length} 项锦标赛 · ${total} 场比赛 · 按所属赛事分组</div>
+ ${visible.length?visible.map(g=>{let closed=state.collapsed.has(g.event.id);return `<section class="event-group">
+ <div class="event-head"><button class="event-head-button" data-action="open-event" data-id="${g.event.id}">${eventLogo(g.event)}<span class="event-head-main"><span class="event-head-title" style="display:block">${txt(g.event.name)}</span><span class="event-head-meta" style="display:block">${txt(g.event.region)} · ${txt(g.event.level)}</span></span></button><span class="event-count">${g.matches.length} 场</span><button class="collapse-btn" data-action="collapse" data-id="${g.event.id}" aria-label="${closed?'展开比赛':'折叠比赛'}">${icon(closed?'down':'up',16)}</button></div>
+ ${closed?'':g.matches.map(renderMatchRow).join('')}</section>`}).join(''):`<div class="empty"><div class="empty-icon">${icon('calendar',22)}</div><b>没有符合条件的比赛</b><p>试试切换筛选状态或其他日期</p></div>`}
+ ${sourceFoot('matches','Match time / teams / BO / event；已结束结果另见 Results')}${fakeNote()}<div style="height:12px"></div>`;
+}
+function renderCalendar(){let occ=eventOccurrences(state.month),filtered=occ.filter(x=>state.eventFilter==='all'||x.status===state.eventFilter);
+ const [y,m]=state.month.split('-').map(Number);
+ return `<div class="month-select"><button class="circle-control" data-action="change-month" data-dir="-1" aria-label="上一个月">${icon('back',20)}</button><h2>${y} 年 ${m} 月</h2><button class="circle-control" data-action="change-month" data-dir="1" aria-label="下一个月">${icon('right',20)}</button></div>
+ <div class="month-hint">本月 ${occ.length} 项模拟赛事 · 按开赛时间排列</div>${chipSet('event-filter',state.eventFilter,[['all','全部赛事'],['live','进行中'],['coming','未开始'],['ended','已结束']])}
+ <div class="surface" style="margin-top:8px">${filtered.map(e=>`<button class="tourney-entry" data-action="open-event" data-id="${e.id}">${eventLogo(e)}<div class="grow"><div class="tourney-title">${txt(e.name)}</div><div class="tourney-meta">${shortDate(e.start)} – ${shortDate(e.end)} · ${txt(e.region)}</div><div class="tourney-state" style="color:${e.status==='live'?'#CF5B50':e.status==='ended'?'#9DA1A5':'#577FA3'}">${STATUS[e.status]} · ${txt(e.level)}</div></div>${icon('right',18)}</button>`).join('')||'<div class="empty">暂无对应赛事</div>'}</div>
+ <div class="section-bar"><h3 class="section-title">赛事日历</h3><span class="sub" style="font-size:11px">仅用于界面演示</span></div>
+ <div class="surface" style="padding:17px"><div style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px;text-align:center">${['日','一','二','三','四','五','六'].map(d=>`<span style="font-size:11px;color:#A4A7AC">${d}</span>`).join('')}
+ ${Array.from({length:new Date(y,m-1,1).getDay()},()=>`<span></span>`).join('')}${Array.from({length:new Date(y,m,0).getDate()},(_,i)=>{let d=i+1,hits=occ.filter(e=>d>=Number(e.start.slice(8,10))&&d<=Number(e.end.slice(8,10))&&e.start.slice(0,7)===state.month);let isToday=`${state.month}-${String(d).padStart(2,'0')}`===TODAY;return `<button data-action="calendar-day" data-id="${state.month}-${String(d).padStart(2,'0')}" aria-label="${m}月${d}日" style="border:0;background:${isToday?'#E9E9EB':'transparent'};border-radius:12px;min-height:37px;font-size:12px;font-weight:${isToday?'750':'500'};color:#55585D;position:relative">${d}${hits.length?`<span style="display:block;margin:3px auto 0;border-radius:50%;background:#6EAF91;width:4px;height:4px"></span>`:''}</button>`}).join('')}</div></div>
+ ${fakeNote('赛事名称、日期、奖池以及日历标记均为模拟数据')}`}
+function teamListItem(t,ranking=true){const followed=state.following.includes(t.id);return `<div class="team-list-item" data-action="open-team" data-id="${t.id}" role="button" tabindex="0">
+ ${ranking?`<span class="rank-number ${t.hltv<=3?'top':''}">${t.hltv}</span>`:''}${teamLogo(t)}<div class="team-item-copy"><div class="team-item-name">${txt(t.name)}</div><div class="team-item-meta">${t.flag} ${txt(t.region)} · 演示 HLTV #${t.hltv}</div></div>
+ <div class="team-list-points"><strong>${t.hlPoints}</strong><small>HLTV 积分·模拟</small></div><button class="follow-button ${followed?'on':''}" data-action="follow" data-id="${t.id}" aria-label="${followed?'取消关注':'关注'}">${icon(followed?'check':'star',17)}</button></div>`;
+}
+function renderTeams(){let q=state.teamQuery.trim().toLowerCase();let filtered=TEAMS.filter(t=>(state.teamFilter==='全部'||state.teamFilter==='已关注'&&state.following.includes(t.id)||t.region===state.teamFilter)&&(t.name.toLowerCase().includes(q)||t.country.toLowerCase().includes(q)));
+ const featured=state.following.map(x=>teamById[x]).filter(Boolean).slice(0,3);
+ return `<div class="search-field">${icon('search',19)}<input id="team-query" type="search" placeholder="搜索战队名称或国家" aria-label="搜索战队" autocomplete="off" value="${txt(state.teamQuery)}"></div>
+ ${chipSet('team-filter',state.teamFilter,[['全部','全部'],['欧洲','欧洲'],['亚洲','亚洲'],['美洲','美洲'],['已关注','已关注']])}
+ ${!q&&featured.length?`<div class="team-feature"><div class="row between"><div class="team-feature-title">我的关注</div><button class="section-more" data-action="team-filter" data-id="已关注">查看全部 ${icon('right',14)}</button></div><div class="avatar-row">${featured.map(t=>`<button data-action="open-team" data-id="${t.id}" style="display:flex;align-items:center;flex-direction:column;gap:7px;background:none;border:0;max-width:78px">${teamLogo(t)}<span style="font-size:11px;white-space:nowrap;max-width:75px;overflow:hidden;text-overflow:ellipsis">${txt(t.name)}</span></button>`).join('')}</div></div>`:''}
+ <div class="section-bar" style="margin-top:17px"><h2 class="section-title">全球战队</h2><span class="sub" style="font-size:12px">${filtered.length} 支 · 按模拟 HLTV 排名</span></div>
+ <div class="list-card">${filtered.length?filtered.map(t=>teamListItem(t)).join(''):`<div class="empty"><div class="empty-icon">${icon('search',22)}</div><b>没有找到战队</b><p>试试更换搜索内容或地区</p></div>`}</div>
+ ${fakeNote('战队名称为展示示例；排名、积分、战绩和阵容均为虚构')}`}
+function trendHTML(t){return t.trend>0?`<span class="movement up">${icon('arrowUp',13)}${t.trend}</span>`:t.trend<0?`<span class="movement down">${icon('arrowDown',13)}${Math.abs(t.trend)}</span>`:`<span class="movement flat">—</span>`}
+function renderRankings(){let list=[...TEAMS];if(state.rankKind==='hltv')list.sort((a,b)=>a.hltv-b.hltv);
+ else list=list.filter(t=>state.region==='世界'||t.region===state.region).sort((a,b)=>b.vrs-a.vrs);
+ return `<div class="segment"><button data-action="rank-kind" data-id="hltv" class="${state.rankKind==='hltv'?'active':''}">HLTV 世界排名</button><button data-action="rank-kind" data-id="vrs" class="${state.rankKind==='vrs'?'active':''}">Valve VRS 排名</button></div>
+ ${state.rankKind==='vrs'?`<div class="region-chips">${['世界','欧洲','美洲','亚洲'].map(x=>`<button data-action="rank-region" data-id="${x}" class="${state.region===x?'active':''}">${x}</button>`).join('')}</div>`:''}
+ <div class="rank-summary"><span>${state.rankKind==='hltv'?'HLTV 全球榜':'Valve VRS · '+state.region} · ${list.length} 支</span><span>2026年10月 · 演示快照</span></div>
+ <div class="surface">${list.map((t,i)=>`<div class="ranking-row" data-action="open-team" data-id="${t.id}" role="button" tabindex="0"><span class="rank-number ${i<3?'top':''}">${i+1}</span>${teamLogo(t)}<div class="rank-team"><strong>${txt(t.name)}</strong><small>${t.flag} ${txt(t.region)}${state.rankKind==='hltv'?` · ${trendHTML(t)}`:''}</small></div><div class="ranking-point">${state.rankKind==='hltv'?t.hlPoints:t.vrs}<span>${state.rankKind==='hltv'?'HLTV 积分':'Valve 积分'}</span></div></div>`).join('')}</div>
+ ${sourceFoot(state.rankKind==='hltv'?'ranking':'vrs',state.rankKind==='hltv'?'名次 / HLTV Points / 战队 / 名次变化':'Valve Points / 世界或地区榜；不复用 HLTV 名次变化')}
+ ${fakeNote('积分和排名为模拟。HLTV 排名与 Valve VRS 不能混为一个榜单。')}`;
+}
+function settingRow(glyph,label,desc,action,id='',right=''){return `<button class="setting-row" data-action="${action}" ${id?`data-id="${id}"`:''}><span class="setting-symbol">${icon(glyph,18)}</span><span class="setting-copy"><strong>${label}</strong><small>${desc}</small></span><span class="setting-trailing">${right?txt(right):''}${icon('right',17)}</span></button>`}
+function renderProfile(){let followed=state.following.map(id=>teamById[id]).filter(Boolean);return `<div class="surface profile-hero"><div class="profile-avatar">${icon('user',26)}</div><div><b>我的 MatchScope</b><small>本地使用 · 无需注册账号</small></div><span class="mini-pill" style="margin-left:auto">字段对齐版</span></div>
+ <div class="group-heading">我的关注 · ${followed.length} 支战队</div>
+ <div class="surface">${followed.length?followed.map(t=>`<button class="setting-row" data-action="open-team" data-id="${t.id}">${teamLogo(t)}<span class="setting-copy"><strong>${txt(t.name)}</strong><small>${txt(t.region)} · 查看阵容、数据与比赛</small></span>${icon('right',17)}</button>`).join(''):`<div class="empty"><b>暂未关注战队</b><p>在战队列表中点击星标即可关注</p></div>`}</div>
+ <div class="group-heading">内容与提醒</div><div class="surface">
+ ${settingRow('news','资讯中心','新闻、战报、数据解读','open-news')}
+ ${settingRow('switch','转会动态','虚构转会时间线演示','open-transfers')}
+ ${settingRow('bookmark','收藏文章',`${state.savedNews.length} 篇已收藏内容`,'open-saved')}
+ ${settingRow('bell','比赛提醒',`${state.reminders.length} 场已加入本地关注清单`,'open-reminders')}
+ ${settingRow('bell','提醒偏好','演示版不发送系统推送','toggle-notices','',state.noticeOn?'已开启':'已关闭')}
+ </div><div class="group-heading">界面偏好</div><div class="surface"><div style="padding:16px 15px 0;font-size:13px;font-weight:700">底部导航方式</div><div class="style-options"><button class="style-option ${state.navStyle==='fixed'?'active':''}" data-action="nav-style" data-id="fixed"><span class="style-thumb"></span>固定底部</button><button class="style-option ${state.navStyle==='floating'?'active':''}" data-action="nav-style" data-id="floating"><span class="style-thumb"></span>悬浮胶囊</button></div><div class="thin-divider"></div>
+ ${settingRow('clock','时间显示','比赛时间首选显示北京时间','timezone','',state.timezone.startsWith('北京')?'UTC+8':'本地')}
+ ${settingRow('info','HLTV 字段来源对照','核实每个页面可以对应的 HLTV 栏目','open-sources')}
+ ${settingRow('info','关于与数据说明','版本、授权与演示数据说明','open-about')}
+ </div>${fakeNote('关注、收藏、提醒清单及导航方式仅保存在当前浏览器')}`}
+const PAGES={sources:'字段来源对照',match:'比赛详情',team:'战队详情',player:'选手详情',event:'赛事详情',news:'资讯中心',article:'新闻正文',transfers:'转会动态',saved:'已收藏的文章',reminders:'关注的比赛',search:'搜索',about:'关于 MatchScope'};
+const TAB_TEXT={overview:'总览',maps:'地图',stats:'选手数据',h2h:'交手记录',roster:'阵容',matches:'比赛',performance:'数据',schedule:'赛程',bracket:'对阵图',participants:'参赛战队'};
+function openView(type,id=''){if(type==='match'&&!findMatch(id))return;if(type==='team'&&!teamById[id])return;if(type==='player'&&!playerById[id])return;if(type==='event'&&!eventById[id])return;if(type==='article'&&!newsById[id])return;
+ if(state.route)state.viewStack.push({...state.route,detailTab:state.detailTab});state.route={type,id};state.detailTab='overview';renderDetail();}
+state.viewStack=[];
+function closeView(){if(state.viewStack.length){const prev=state.viewStack.pop();state.route={type:prev.type,id:prev.id};state.detailTab=prev.detailTab||'overview';renderDetail();}else{state.route=null;$('#detail-root').innerHTML='';$('#detail-root').style.display='none';}}
+function changeDetailTab(tab){state.detailTab=tab;renderDetail();}
+function renderDetail(){const view=state.route;if(!view)return;const root=$('#detail-root');root.style.display='flex';
+ let titles={...PAGES};if(view.type==='team')titles.team=teamById[view.id]?.name||'战队详情';if(view.type==='player')titles.player=playerById[view.id]?.name||'选手';if(view.type==='event')titles.event=eventById[view.id]?.name||'赛事';
+ if(view.type==='article')titles.article='资讯正文';
+ let headerBtn='';if(view.type==='team'){let on=state.following.includes(view.id);headerBtn=`<button class="icon-button" data-action="follow" data-id="${view.id}" aria-label="${on?'取消关注':'关注战队'}" style="color:${on?'#26876B':'#73777C'}">${icon(on?'check':'star',22)}</button>`}
+ if(view.type==='article'){let on=state.savedNews.includes(view.id);headerBtn=`<button class="icon-button" data-action="save-news" data-id="${view.id}" aria-label="${on?'取消收藏':'收藏文章'}" style="color:${on?'#267C64':'#787B80'}">${icon(on?'check':'bookmark',21)}</button>`}
+ root.innerHTML=`<header class="detail-header"><button class="icon-button" data-action="back" aria-label="返回">${icon('back',24)}</button><strong class="detail-header-title">${txt(titles[view.type]||'详情')}</strong>${headerBtn||''}</header><div class="detail-body" id="detail-body">${renderDetailBody(view)}</div>`;
+}
+function detailTabs(options){return `<div class="detail-tabs" role="tablist">${options.map(k=>`<button class="detail-tab ${state.detailTab===k?'active':''}" data-action="detail-tab" data-id="${k}" role="tab" aria-selected="${state.detailTab===k}">${TAB_TEXT[k]}</button>`).join('')}</div>`}
+function statTile(value,label){return `<div class="stat-tile"><strong>${value}</strong><small>${label}</small></div>`}
+function detailSection(title,content){return `<h3 class="detail-subheading">${title}</h3><div class="surface">${content}</div>`}
+function rowDetail(left,right){return `<div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 14px;border-bottom:1px solid #F1F1F2;font-size:12px"><span style="color:#91949A">${left}</span><strong style="font-size:12px;text-align:right">${right}</strong></div>`}
+function renderDetailBody(v){const f={match:renderMatchDetail,team:renderTeamDetail,player:renderPlayerDetail,event:renderEventDetail,news:renderNewsCenter,article:renderArticle,transfers:renderTransfers,saved:renderSaved,reminders:renderReminders,search:renderSearch,sources:renderSources,about:renderAbout};return (f[v.type]||renderAbout)(v.id)}
+function activeSeries(m){const own=state.liveIncrements[m.id]||0;return own}
+function matchScoreLarge(m){let s=m.series;if(!s)return 'VS';return `${s[0]} : ${s[1]}`}
+function liveRowSummary(m){return m.status==='live'?`<span class="status-pill live">• 正在进行（模拟）</span>`:`<span class="status-pill ${m.status}">${STATUS[m.status]}</span>`}
+function mapTile(row,i){let no=i+1;const played=row.status!=='coming';return `<div class="map-tile"><span style="width:23px;font-size:11px;color:#A0A4A9">${String(no).padStart(2,'0')}</span><div class="grow"><div class="map-name">${txt(row.name)}</div><div class="map-sub">${row.status==='live'?'当前地图 · 模拟更新':row.status==='ended'?'地图已结束':'尚未开打'}</div></div><div class="map-side-score">${played?`<span style="color:${row.a>row.b?'#238369':'#373B3F'}">${row.a}</span><span style="color:#B4B5B8">:</span><span style="color:${row.b>row.a?'#238369':'#373B3F'}">${row.b}</span>`:'<span style="font-size:12px;color:#AFB1B5">— : —</span>'}</div></div>`}
+function pseudoStats(m,tid,map='all'){const t=teamById[tid],maps=map==='all'?m.maps.filter(r=>r.status!=='coming'):[m.maps[Number(map)]].filter(r=>r&&r.status!=='coming');
+ return t.players.map((id,i)=>{let p=playerById[id],kills=0,deaths=0,assists=0,adr=0,kast=0,rating=0;
+  maps.forEach((row,mi)=>{const seed=(m.date.charCodeAt(m.date.length-1)+t.hltv+i*4+Number(map==='all'?mi:map))%8;
+    kills+=10+seed+i;deaths+=10+((seed+i*3)%8);assists+=2+i%4;adr+=65+seed*2+i;kast+=66+seed+i;rating+=0.92+seed*.04+i*.014;
+  });const n=maps.length||1;
+  return {...p,kills,deaths,assists,adr:Math.round(adr/n),kast:Math.round(kast/n),rating:Number((rating/n).toFixed(2))};
+ });
+}
+function statTableFor(m,tid,map='all'){const t=teamById[tid],data=pseudoStats(m,tid,map);return `<div class="stats-label">${txt(t.name)} · ${map==='all'?'全部已开始地图':txt(m.maps[Number(map)]?.name||'地图')} · 演示</div>
+ <div class="table-responsive"><table class="stats-table" style="min-width:350px"><thead><tr><th>选手</th><th>K-D</th><th>ADR</th><th>KAST</th><th>Rating 3.0</th></tr></thead>
+ <tbody>${data.map(p=>`<tr data-action="open-player" data-id="${p.id}" style="cursor:pointer" role="button" tabindex="0"><td class="player-name">${txt(p.name)}</td><td>${p.kills}-${p.deaths}</td><td>${p.adr.toFixed(0)}</td><td>${p.kast}%</td><td class="rating">${p.rating.toFixed(2)}</td></tr>`).join('')}</tbody></table></div>`;}
+function matchVeto(m){if(m.status==='coming')return `<div style="padding:17px 15px;font-size:12px;color:#9A9CA3">地图选择尚未公布。正式版仅在 HLTV 提供选图禁图信息时显示。</div>`;
+ const a=teamById[m.a],b=teamById[m.b];const veto=m.bo==='BO5'?
+ [`${a.name} 禁用 Cache`,`${b.name} 禁用 Anubis`,`${a.name} 选择 Mirage`,`${b.name} 选择 Inferno`,`${a.name} 选择 Nuke`,`${b.name} 选择 Dust2`,'Ancient 为决胜地图']:
+ [`${a.name} 禁用 Ancient`,`${b.name} 禁用 Dust2`,`${a.name} 选择 Mirage`,`${b.name} 选择 Inferno`,`${a.name} 禁用 Cache`,`${b.name} 禁用 Anubis`,'Nuke 为决胜地图'];
+ return veto.map((v,i)=>`<div class="row" style="gap:11px;padding:10px 14px;border-bottom:1px solid #F2F2F3"><span class="sub" style="min-width:17px;font-size:11px">${i+1}</span><span style="font-size:12px">${txt(v)}</span></div>`).join('')+`<div style="padding:12px;color:#9BA0A7;font-size:11px">模拟流程，HLTV 实际记录的选图禁图顺序以对应比赛为准。</div>`;
+}
+function matchMapDetail(m){return m.maps.map((map,i)=>`<div class="map-tile"><span style="min-width:23px;font-size:11px;color:#A0A4A9">${String(i+1).padStart(2,'0')}</span><div class="grow"><div class="map-name">${txt(map.name)}</div><div class="map-sub">${map.status==='coming'?'尚未开打':map.status==='live'?'当前地图':'已结束'} · ${halfText(map)}</div></div><div class="map-side-score">${map.status==='coming'?'— : —':`${map.a} : ${map.b}`}</div></div>`).join('');}
+
+function renderMatchDetail(id){const m=findMatch(id),a=teamById[m.a],b=teamById[m.b],event=eventById[m.eventId];
+ if(m.status==='live'&&activeSeries(m)>0){m.maps=m.maps.map(row=>row.status==='live'?{...row,a:row.a+Math.floor((activeSeries(m)+1)/2),b:row.b+Math.floor(activeSeries(m)/2)}:row)}
+ const head=`<div class="surface match-hero"><button class="match-event-line" data-action="open-event" data-id="${event.id}" style="border:0;background:none;margin:0 auto 19px">${icon('trophy',15)} ${txt(event.name)} ${icon('right',14)}</button>
+ <div class="hero-teams"><div class="hero-side">${teamLogo(a)}<button data-action="open-team" data-id="${a.id}">${txt(a.name)}</button></div><div><div class="hero-score">${matchScoreLarge(m)}</div><div class="hero-meta">${txt(m.bo)} · ${m.status==='ended'?'比赛结束':m.status==='live'?'进行中':'等待开赛'}</div><div style="margin-top:9px">${liveRowSummary(m)}</div></div><div class="hero-side">${teamLogo(b)}<button data-action="open-team" data-id="${b.id}">${txt(b.name)}</button></div></div>
+ <div class="hero-meta" style="text-align:center;margin-top:16px">${m.date} · ${m.time} · 北京时间</div><div class="detail-actions"><button class="action-pill ${state.reminders.includes(id)?'active':''}" data-action="reminder" data-id="${id}">${icon(state.reminders.includes(id)?'check':'bell',16)} ${state.reminders.includes(id)?'已关注':'关注比赛'}</button>${m.status==='live'?`<button class="action-pill" data-action="demo-refresh" data-id="${id}">${icon('refresh',15)} 模拟刷新</button>`:''}</div></div>`;
+ const played=m.maps.filter(x=>x.status!=='coming').length,finished=m.maps.filter(x=>x.status==='ended').length;
+ let body='';
+ if(state.detailTab==='overview'){
+   body=`${detailSection('比赛总览',`<div style="padding:13px"><div class="stat-grid">${statTile(m.bo,'比赛赛制')}${statTile(String(finished),'已结束地图')}${statTile(txt(STATUS[m.status]),'比赛状态')}</div></div>`)}
+   ${detailSection('地图比分',matchMapDetail(m))}${detailSection('选图禁图',matchVeto(m))}
+   ${detailSection('双方选手名单',`<div class="row between" style="padding:13px">${teamLogo(a)}<span style="font-size:11px;color:#A4A7AE">对阵双方</span>${teamLogo(b)}</div>${a.players.map((x,i)=>{let p=playerById[x],q=playerById[b.players[i]];return `<div class="row between" style="padding:11px 13px;border-top:1px solid #F3F3F3;font-size:12px"><button data-action="open-player" data-id="${p.id}" style="background:none;border:0;font-weight:700">${txt(p.name)}</button><span style="color:#A6A8AD">选手</span><button data-action="open-player" data-id="${q.id}" style="background:none;border:0;font-weight:700">${txt(q.name)}</button></div>`}).join('')}`)}`;
+ }else if(state.detailTab==='maps'){
+   body=`${detailSection('地图 / 半场比分',matchMapDetail(m))}${detailSection('选图禁图记录',matchVeto(m))}`;
+ }else if(state.detailTab==='stats'){
+   if(!played)body=`<div class="surface"><div class="empty"><b>尚无选手比赛统计</b><p>比赛未开始，HLTV 通常不会提供实际 K-D / ADR / Rating。</p></div></div>`;
+   else {
+     const sm=state.statMap||'all';
+     const chips=[['all','全部地图'],...m.maps.filter(r=>r.status!=='coming').map(r=>[String(m.maps.indexOf(r)),r.name])];
+     body=`<div class="chips" role="group" aria-label="统计地图切换">${chips.map(([key,label])=>`<button class="chip ${sm===key?'active':''}" data-action="stat-map" data-id="${key}">${txt(label)}</button>`).join('')}</div><div class="surface">${statTableFor(m,a.id,sm)}<div class="thin-divider"></div>${statTableFor(m,b.id,sm)}</div><div class="detail-note">统计字段对应 HLTV Match stats：K-D、ADR、KAST、Rating 3.0；数值全部为模拟。历史比赛可能使用不同 Rating 版本。</div>`;
+   }
+ }else{
+   const history=[];for(let d=-1;d>=-45;d--){const key=addDays(m.date,d);for(const g of generateDayMatches(key))for(const other of g.matches){if((other.a===m.a&&other.b===m.b)||(other.a===m.b&&other.b===m.a))history.push(other);}}
+   body=detailSection('历史交手',history.length?history.slice(-4).reverse().map(h=>`<button class="setting-row" data-action="open-match" data-id="${h.id}"><span class="setting-copy"><strong>${txt(a.name)} vs ${txt(b.name)}</strong><small>${dateLabel(h.date)} · ${txt(eventById[h.eventId].name)}</small></span><b>${txt(h.score)}</b>${icon('right',15)}</button>`).join(''):'<div class="empty"><b>暂无历史交手记录</b><p>模拟数据库没有找到两队的先前比赛；HLTV 的 Past matches 在有历史记录时显示。</p></div>');
+ }
+ return head+detailTabs(['overview','maps','stats','h2h'])+body+sourceFoot('matchDetail','比分 / Veto / 半场比分 / Match stats / Lineups / Past matches')+fakeNote('本场比赛为虚构示例。公开 HLTV 页面有这些字段，但尚未获得实际数据授权。');
+}
+function renderForm(t){return t.form.map(x=>`<span style="display:inline-grid;place-items:center;margin-left:5px;width:24px;height:24px;border-radius:8px;font-size:11px;color:${x==='胜'?'#277C60':'#CA6A66'};background:${x==='胜'?'#E7F5EC':'#FAEDEC'};font-weight:760">${x==='胜'?'W':'L'}</span>`).join('')}
+function renderBar(name,n){return `<div class="data-bar-row" style="padding-left:0;padding-right:0"><div class="data-bar-label"><span>${txt(name)}</span><b>${n}%</b></div><div class="data-track"><div class="data-fill" style="width:${n}%"></div></div></div>`}
+function teamRelatedMatches(teamId){let result=[];for(let i=-9;i<=9;i++){const day=addDays(TODAY,i);for(const g of generateDayMatches(day))for(const m of g.matches)if(m.a===teamId||m.b===teamId)result.push(m)}return result.sort((a,b)=>b.date.localeCompare(a.date)||b.time.localeCompare(a.time))}
+function smallMatchLine(m,teamId){let opp=teamById[m.a===teamId?m.b:m.a];let friendly=teamById[teamId];return `<button class="setting-row" data-action="open-match" data-id="${m.id}">${teamLogo(opp)}<span class="setting-copy"><strong>${txt(friendly.name)} vs ${txt(opp.name)}</strong><small>${dateLabel(m.date)} · ${m.time} · ${txt(eventById[m.eventId].short)} · ${txt(m.bo)}</small></span><span style="font-weight:760;white-space:nowrap;font-size:13px">${m.score}</span>${icon('right',16)}</button>`}
+function teamPlayerRows(t){return t.players.map((id,i)=>{const p=playerById[id];return `<button class="player-row" data-action="open-player" data-id="${p.id}"><span class="player-portrait">${txt(p.name.slice(0,2).toUpperCase())}</span><span class="player-row-copy"><strong>${txt(p.name)}</strong><small>当前阵容 · 演示选手（非真实名单）</small></span><span class="player-rating"><b>${p.rating.toFixed(2)}</b><small>Rating · 近3个月</small></span>${icon('right',17)}</button>`}).join('');}
+function teamMapRows(t){return Object.entries(t.mapRates).map(([name,rate],i)=>{const played=18+(t.hltv+i*3)%19,wins=Math.round(played*rate/100),p=(wins/played*100).toFixed(1);
+ return `<div style="padding:14px;border-bottom:1px solid #F1F2F3"><div class="row between" style="font-size:12px;font-weight:680"><span>${txt(name)}</span><span>${p}%</span></div><div class="data-track" style="margin:10px 0 8px"><div class="data-fill" style="width:${p}%"></div></div><div class="sub" style="font-size:10px">${played} 地图 · ${wins} 胜 · ${played-wins} 负 · 近 3 个月（模拟）</div></div>`;}).join('');}
+
+function renderTeamDetail(id){const t=teamById[id],on=state.following.includes(id),recent=teamRelatedMatches(id);
+ const hero=`<div class="surface team-hero">${teamLogo(t)}<h2>${txt(t.name)}</h2><div class="team-country">${t.flag} ${txt(t.country)} · ${txt(t.region)}</div>
+ <div class="stat-grid">${statTile('#'+t.hltv,'HLTV 排名')}${statTile(t.hlPoints,'HLTV 积分')}${statTile(t.vrs,'VRS 积分')}</div>
+ <div class="detail-actions"><button class="action-pill ${on?'active':''}" data-action="follow" data-id="${id}">${icon(on?'check':'star',16)}${on?'已关注':'关注战队'}</button><button class="action-pill" data-action="open-transfers">${icon('switch',16)} 转会记录</button></div></div>`;
+ let body='';
+ if(state.detailTab==='overview'){
+ body=`${detailSection('最近比赛',recent.length?recent.slice(0,5).map(m=>smallMatchLine(m,id)).join(''):'<div class="empty">暂无演示比赛</div>')}
+ ${detailSection('当前选手阵容',teamPlayerRows(t))}
+ ${detailSection('地图统计 · 近3个月',teamMapRows(t))}`;
+ }else if(state.detailTab==='roster'){
+ body=`${detailSection('现役选手 · 五人名单',teamPlayerRows(t))}${detailSection('教练与阵容变动',`${rowDetail('现役教练','暂无模拟数据')}${rowDetail('阵容历史','参见 HLTV Team → Roster timeline')}${rowDetail('转会','参见 HLTV Team → Transfers')}`)}`;
+ }else if(state.detailTab==='matches'){
+ body=detailSection('近期比赛与赛果',recent.length?recent.slice(0,12).map(m=>smallMatchLine(m,id)).join(''):'<div class="empty">暂无演示比赛</div>');
+ }else{
+ body=`${detailSection('地图胜率 · 近3个月',teamMapRows(t))}<div class="detail-note">HLTV 的 Teams → Stats → Maps 提供地图胜率、胜负、Pick% 与 Ban%；本演示只展示可对应的三项字段，且所有数值均为模拟。</div>`;
+ }
+ return hero+detailTabs(['overview','roster','matches','performance'])+body+sourceFoot(state.detailTab==='performance'?'teamMaps':'team','队伍排名 / 阵容 / 教练 / 最近比赛 / 地图统计')+fakeNote('战队信息结构参考 HLTV；阵容、排行、积分、胜率均为模拟。');
+}
+function renderPlayerDetail(id){const p=playerById[id],t=teamById[p.teamId],seed=Math.max(0,p.rating*22-8);const performance=[
+ ['Firepower',Math.round(seed+62)],['Entrying',Math.round(seed+39)],['Trading',Math.round(seed+47)],['Opening',Math.round(seed+45)],['Clutching',Math.round(seed+52)],['Sniping',Math.round(seed+58)],['Utility',Math.round(seed+41)]
+ ];
+ return `<div class="surface" style="padding:21px 15px 19px;display:flex;align-items:center;flex-direction:column"><span class="player-portrait" style="height:78px;width:78px;border-radius:26px;font-size:25px">${txt(p.name.slice(0,2).toUpperCase())}</span><h2 style="font-size:23px;margin:13px 0 5px">${txt(p.name)}</h2><div class="sub" style="font-size:12px">模拟选手 · 个人资料</div><button data-action="open-team" data-id="${t.id}" class="action-pill" style="margin-top:15px">${teamLogo(t)} ${txt(t.name)} ${icon('right',15)}</button></div>
+ ${detailSection('个人数据 · 近3个月（模拟 24 地图）',`<div style="padding:13px"><div class="stat-grid">${statTile(p.rating.toFixed(2),'Rating 3.0')}${statTile(p.kd.toFixed(2),'K/D')}${statTile(p.adr,'ADR')}${statTile(p.kast+'%','KAST')}${statTile(p.hs+'%','爆头率')}${statTile('24','统计地图数')}</div></div>`)}
+ ${detailSection('HLTV Player 统计维度 · 演示',`<div style="padding:0 14px">${performance.map(([k,n])=>renderBar(k,Math.min(99,Math.max(0,n)))).join('')}</div>`)}
+ ${detailSection('近期比赛',teamRelatedMatches(t.id).slice(0,5).map(m=>smallMatchLine(m,t.id)).join('')||'<div class="empty">暂无演示比赛</div>')}
+ ${sourceFoot('player','Player Profile → 最近3个月统计、Rating / Firepower / Entrying / Trading / Clutching 等；详细数据参见 Stats')}
+ ${fakeNote('所有数值和选手身份为模拟。HLTV 的数据维度与本页一致，具体样本数需以授权数据为准。')}`;
+}
+function bracketMarkup(e){let parts=e.parties.map(id=>teamById[id]);let semis=[[parts[0],parts[1]],[parts[2],parts[3]]];return `<div class="bracket-scroller"><div class="bracket-column"><div class="bracket-head">半决赛</div>${semis.map(pair=>`<div class="bracket-match"><div class="bracket-teams">${pair.map((t,i)=>`<div class="bracket-line"><span>${txt(t.name)}</span><span>${i?'1':'2'}</span></div>`).join('')}</div></div>`).join('')}</div><div class="bracket-column"><div class="bracket-head">决赛</div><div class="bracket-match bracket-final"><div class="bracket-teams"><div class="bracket-line"><span>${txt(parts[0].name)}</span><span>—</span></div><div class="bracket-line"><span>${txt(parts[2].name)}</span><span>—</span></div></div></div></div></div>`}
+function eventMatches(eventId){let mm=state.eventMonth||TODAY.slice(0,7);let occ=eventOccurrences(mm).find(e=>e.id===eventId);if(!occ)return [];
+ let list=[];for(let i=0;i<9;i++){let d=addDays(occ.start,i);for(let g of generateDayMatches(d))if(g.event.id===eventId)list.push(...g.matches)}return list.sort((a,b)=>a.date.localeCompare(b.date)||a.time.localeCompare(b.time));}
+function renderEventDetail(id){const e=eventById[id],hasBracket=['iem','blast','thunder','pgl','asia'].includes(id);let mm=state.eventMonth||TODAY.slice(0,7),occ=eventOccurrences(mm).find(x=>x.id===id)||eventOccurrences(TODAY.slice(0,7)).find(x=>x.id===id),list=eventMatches(id);
+ const hero=`<div class="surface" style="padding:21px 15px 19px;text-align:center"><div style="display:flex;justify-content:center">${eventLogo(e)}</div><h2 style="font-size:18px;line-height:1.4;margin:12px 0 8px">${txt(e.name)}</h2><div style="color:#92969B;font-size:12px">${txt(e.region)} · ${txt(e.level)}</div><div style="margin-top:16px" class="stat-grid">${statTile(shortDate(occ.start)+' – '+shortDate(occ.end),'赛事日期')}${statTile(e.parties.length,'参赛战队数')}${statTile(e.prize,'总奖金·模拟')}</div></div>`;
+ let content='';if(state.detailTab==='overview'){
+ content=`${detailSection('赛事资料',`${rowDetail('赛事名称',txt(e.name))}${rowDetail('地点 / 比赛形式',txt(e.region))}${rowDetail('排名赛事类别',txt(e.level))}${rowDetail('奖池',txt(e.prize)+'（模拟）')}${rowDetail('起止日期',shortDate(occ.start)+' — '+shortDate(occ.end))}${rowDetail('赛制',hasBracket?'小组赛 / 淘汰赛（模拟）':'未提供赛制演示数据')}`)}
+ ${detailSection('参赛战队',e.parties.slice(0,6).map(id=>{let t=teamById[id];return `<button class="setting-row" data-action="open-team" data-id="${id}">${teamLogo(t)}<span class="setting-copy"><strong>${txt(t.name)}</strong><small>${t.flag} ${txt(t.region)} · 演示排名</small></span>${icon('right',16)}</button>`}).join(''))}`;
+ }else if(state.detailTab==='schedule'){
+ content=detailSection('本赛事比赛列表',list.length?list.map(renderMatchRow).join(''):'<div class="empty"><b>尚无演示赛程</b></div>');
+ }else if(state.detailTab==='bracket'){
+ content=hasBracket?`${detailSection('淘汰赛对阵图（演示）',bracketMarkup(e))}<div class="detail-note">HLTV 的赛事页面在有赛制/抽签数据时展示 Brackets；并非所有赛事都一定有这个栏目。</div>`:detailSection('赛事对阵图','<div class="empty">该赛事未提供对阵图演示数据</div>');
+ }else{
+ content=detailSection('参赛战队',e.parties.map(id=>{const t=teamById[id];return `<button class="setting-row" data-action="open-team" data-id="${id}">${teamLogo(t)}<span class="setting-copy"><strong>${txt(t.name)}</strong><small>${t.flag} ${txt(t.country)}</small></span>${icon('right',16)}</button>`}).join(''));
+ }
+ return hero+detailTabs(hasBracket?['overview','schedule','bracket','participants']:['overview','schedule','participants'])+content+sourceFoot('eventDetail','赛事日期 / 参赛战队 / 地点 / 奖池 / 赛制 / Brackets（如有）')+fakeNote('所有赛事名称及比赛内容为模拟。不会强制为每个赛事生成官方不存在的字段。');
+}
+function newsRow(n){return `<button class="news-row" data-action="open-article" data-id="${n.id}"><span class="news-row-thumb" style="--news-bg:${n.bg}">${icon(n.icon,27)}</span><span class="news-row-copy"><span class="news-row-title" style="display:block">${txt(n.title)}</span><span class="news-row-meta" style="display:block">${txt(n.time)} · 原创模拟文章</span></span>${icon('right',16)}</button>`;}
+function renderNewsCenter(){const featured=NEWS[0];return `<div class="news-feature" data-action="open-article" data-id="${featured.id}" role="button" tabindex="0"><div class="news-cover">${icon('pulse',31)} <strong style="font-size:12px;margin-left:9px;letter-spacing:1px">COUNTER-STRIKE / DEMO</strong><div class="cover-symbol">${icon('trophy',39)}</div></div><div class="news-feature-copy"><div class="news-eyebrow">新闻示例 · ${txt(featured.time)}</div><h2 class="news-headline">${txt(featured.title)}</h2><div class="news-summary">${txt(featured.description)}</div></div></div>
+ <div class="section-bar"><h3 class="section-title">最新资讯</h3><button class="section-more" data-action="open-transfers">转会记录 ${icon('right',14)}</button></div>
+ <div class="surface">${NEWS.map(newsRow).join('')}</div>
+ ${sourceFoot('news','文章标题 / 发布时间 / 正文；类别标签不是 HLTV 标准字段，已从列表删除')}${fakeNote('新闻全文不得未经许可复制或翻译 HLTV 原文；此处仅有独立虚构样例。')}`;}
+function renderArticle(id){const n=newsById[id];let saved=state.savedNews.includes(id);return `<div style="margin:11px 3px 15px"><div class="news-eyebrow">${txt(n.time)} · 原创模拟文章</div><h1 class="news-article-title">${txt(n.title)}</h1><div class="row between"><span class="sub" style="font-size:12px">MatchScope 编辑示例</span><button class="action-pill ${saved?'active':''}" data-action="save-news" data-id="${n.id}">${icon(saved?'check':'bookmark',15)}${saved?'已收藏':'收藏'}</button></div></div>
+ <div class="article-figure">${icon(n.icon,64,1.3)}</div><div class="surface"><div class="article-body"><p class="article-lead">${txt(n.description)}</p>${n.body.map(para=>`<p>${txt(para)}</p>`).join('')}<p style="padding:12px 14px;background:#F4F5F5;color:#8B8E94;border-radius:16px;font-size:12px">原型提示：这篇内容为虚构样例，仅用于展示排版与信息架构。不代表实际新闻报道。</p></div></div>
+ ${detailSection('继续阅读',NEWS.filter(x=>x.id!==id).slice(0,3).map(newsRow).join(''))}`}
+function renderTransfers(){const visible=TRANSFERS.filter(t=>state.transferFilter==='全部'||t.type.startsWith(state.transferFilter));return `<div class="surface" style="padding:16px 15px"><div class="row between"><div><strong style="font-size:16px">选手转会时间线</strong><p class="sub" style="font-size:12px;line-height:1.8;margin:9px 0 0">转入、离队、替补与教练变动</p></div>${icon('switch',27)}</div></div>${chipSet('transfer-filter',state.transferFilter,[['全部','全部'],['转入','转入'],['离队','离队'],['替补','替补'],['租借','租借']])}
+ <div class="surface" style="margin-top:8px">${visible.map(t=>`<div class="transfer-entry"><span class="player-portrait" style="width:46px;height:46px;font-size:13px">${txt(t.name.slice(0,2).toUpperCase())}</span><div class="grow"><div class="transfer-date">${txt(t.date)} · ${txt(t.type)}</div><div class="transfer-move">${txt(t.name)} · ${txt(t.from)} → ${txt(t.to)}</div><div class="transfer-sub">演示转会 · 无真实新闻来源</div></div>${icon('right',15)}</div>`).join('')||'<div class="empty">暂无此类转会记录</div>'}</div>
+ ${detailSection('相关新闻',NEWS.filter(n=>n.category==='转会').map(newsRow).join(''))}${fakeNote('本页所有转会记录、选手与所属战队均为虚构')}`}
+function renderSaved(){let news=state.savedNews.map(id=>newsById[id]).filter(Boolean);return `<div class="section-bar"><h3 class="section-title">已收藏的资讯</h3><span class="sub" style="font-size:12px">${news.length} 篇</span></div><div class="surface">${news.length?news.map(newsRow).join(''):`<div class="empty"><div class="empty-icon">${icon('bookmark',22)}</div><b>还没有收藏内容</b><p>打开新闻详情，点击右上角书签即可收藏</p></div>`}</div>`}
+function renderReminders(){let arr=state.reminders.map(findMatch).filter(Boolean);return `<div class="section-bar"><h3 class="section-title">我的比赛清单</h3><span class="sub" style="font-size:12px">${arr.length} 场</span></div><div class="surface">${arr.length?arr.map(renderMatchRow).join(''):`<div class="empty"><div class="empty-icon">${icon('bell',22)}</div><b>没有关注的比赛</b><p>在赛事列表点击铃铛即可加入此清单。演示版不会发送系统通知。</p></div>`}</div>${fakeNote('比赛提醒仅用于交互展示，不会触发手机通知')}`}
+function renderSearch(){return `<div class="search-field" style="margin-top:6px">${icon('search',20)}<input type="search" id="global-search" aria-label="搜索全部内容" placeholder="搜索战队、选手、赛事、新闻" autocomplete="off" value="${txt(state.searchQuery||'')}"></div><div class="helper-top">你可以搜索 Vitality、亚洲、选手代号等</div><div id="search-results">${searchResults(state.searchQuery||'')}</div>`}
+function searchResults(q){let input=q.trim().toLowerCase();if(!input)return `<div class="section-bar"><h3 class="section-title">快速探索</h3></div><div class="surface">${TEAMS.slice(0,4).map(t=>`<button class="setting-row" data-action="open-team" data-id="${t.id}">${teamLogo(t)}<span class="setting-copy"><strong>${txt(t.name)}</strong><small>推荐战队 · 演示数据</small></span>${icon('right',16)}</button>`).join('')}</div>`;
+ let tr=TEAMS.filter(t=>t.name.toLowerCase().includes(input)||t.country.toLowerCase().includes(input)||t.region.includes(input)).slice(0,6),er=EVENTS.filter(e=>e.name.toLowerCase().includes(input)||e.short.toLowerCase().includes(input)||e.region.includes(input)).slice(0,5),pr=PLAYERS.filter(p=>p.name.toLowerCase().includes(input)).slice(0,5),nr=NEWS.filter(n=>n.title.toLowerCase().includes(input)||n.category.includes(input)).slice(0,5);
+ if(!(tr.length+er.length+pr.length+nr.length))return `<div class="empty"><div class="empty-icon">${icon('search',23)}</div><b>没有找到结果</b><p>尝试其他中文关键词或战队英文名</p></div>`;
+ let sections=[];
+ if(tr.length)sections.push(detailSection('战队',tr.map(t=>`<button class="setting-row" data-action="open-team" data-id="${t.id}">${teamLogo(t)}<span class="setting-copy"><strong>${txt(t.name)}</strong><small>${txt(t.region)} · HLTV #${t.hltv}</small></span>${icon('right',17)}</button>`).join('')));
+ if(er.length)sections.push(detailSection('赛事',er.map(e=>`<button class="setting-row" data-action="open-event" data-id="${e.id}">${eventLogo(e)}<span class="setting-copy"><strong>${txt(e.name)}</strong><small>${txt(e.region)}</small></span>${icon('right',17)}</button>`).join('')));
+ if(pr.length)sections.push(detailSection('选手',pr.map(p=>`<button class="setting-row" data-action="open-player" data-id="${p.id}"><span class="player-portrait" style="width:40px;height:40px;font-size:12px">${txt(p.name.slice(0,2))}</span><span class="setting-copy"><strong>${txt(p.name)}</strong><small>${txt(teamById[p.teamId].name)} · 选手资料</small></span>${icon('right',17)}</button>`).join('')));
+ if(nr.length)sections.push(detailSection('资讯',nr.map(newsRow).join('')));
+ return sections.join('');
+}
+function renderSources(){const rows=[
+ ['每日比赛与赛果','赛程时间、队伍、比赛阶段、BO、状态、结果','matches'],
+ ['赛事信息','日期、地点、奖池、赛制、参赛队伍、对阵图（如有）','eventDetail'],
+ ['比赛详情','Veto、地图/半场比分、选手 K-D、ADR、KAST、Rating、Past matches','matchDetail'],
+ ['战队与阵容','世界排名、积分、阵容、教练、近期比赛','team'],
+ ['战队地图统计','Map win rate、胜/负、选图与禁图率，需统计时间范围','teamMaps'],
+ ['选手数据','Rating、K/D、ADR、KAST、Player Profile 维度','player'],
+ ['HLTV 榜单','名次、HLTV 积分、排名变化（按榜单日期）','ranking'],
+ ['Valve VRS','Valve 积分、全球及地区名次；不复用 HLTV 名次变化','vrs'],
+ ['新闻','新闻标题、时间与正文（转载需要单独授权）','news'],
+ ['转会动态','转入/离队/替补/教练/日期/前后队伍','transfers']];
+ return `<div class="surface" style="padding:18px 15px"><strong>页面字段来源已经逐项核对</strong><p class="sub" style="font-size:12px;line-height:1.8;margin:9px 0 0">这里列出的都是 HLTV 公开网页能找到的栏目或字段，而非可用的官方 API。原型使用自生成模拟数据，没有向 HLTV 请求数据。</p></div>
+ ${rows.map(([title,description,key])=>detailSection(title,`<div style="padding:14px 15px;font-size:12px;line-height:1.85;color:#63676E">${txt(description)}<div style="margin-top:8px">${sourceLink(SOURCE_LINKS[key])}</div></div>`)).join('')}
+ <div class="surface" style="padding:16px;line-height:1.85;font-size:12px;color:#7B8087">不按 HLTV 官方字段呈现的项目：自创的 S/A/B 赛事等级、选手战术角色、没有样本范围的地图胜率、虚构的技术指标和跨榜单名次变化，均已从关键页面移除。<br><br>允许存在的应用自身功能包括关注、收藏、导航样式及本地时间设置，这些不是 HLTV 提供的数据字段。<br><br>${sourceLink(SOURCE_LINKS.terms,'查看 HLTV 使用条款')}</div>`;
+}
+
+function renderAbout(){return `<div class="surface" style="padding:21px 17px;text-align:center"><div style="width:59px;height:59px;background:#E9E9EB;border-radius:21px;display:grid;place-items:center;margin:0 auto 13px">${icon('trophy',30)}</div><strong style="font-size:21px">MatchScope CS2</strong><p class="sub" style="font-size:12px;margin:10px 0 0">赛事数据客户端 · HLTV 字段对齐版</p></div>
+ ${detailSection('当前已完成',`<div style="padding:16px 17px;font-size:13px;line-height:2;color:#61656C">五个底部导航、按天多赛事分组、月度赛事日历、战队查询与关注、HLTV/VRS 排名结构、有源字段的比赛详情、战队资料、选手资料、赛事淘汰赛对阵图、新闻资讯、转会动态、文章收藏及搜索。</div>`)}
+ ${detailSection('演示与授权说明',`<div style="padding:16px 17px;font-size:12px;line-height:1.9;color:#797E84">当前仅为产品交互演示。所有比赛对阵、时间、比分、排名、选手名单、统计数字、新闻标题、转会记录、赛事奖池均为模拟或虚构。虽然使用部分真实战队名称用于展示，但不代表它们的真实成绩和阵容。<br><br>本原型没有抓取 HLTV 内容，也未连接其数据接口。要公开运营需确保取得对应数据、名称、图像及新闻内容的使用许可。</div>`)}
+ ${detailSection('开发方向',`${rowDetail('目标客户端','Android · Kotlin / Jetpack Compose')}${rowDetail('视觉风格','浅灰白、简洁圆润')}${rowDetail('导航布局','固定 / 悬浮胶囊')}${rowDetail('数据状态','全部模拟')}`)}`}
+function openTimezoneModal(){const root=$('#modal-root');root.innerHTML=`<div class="modal-backdrop" data-action="close-modal"><div class="modal-sheet" role="dialog" aria-modal="true" aria-label="时间显示设置"><div class="sheet-handle"></div><div class="sheet-heading">时间显示</div>
+ <div class="surface">${['北京时间（UTC+8）','设备本地时间'].map(z=>`<button class="modal-option" data-action="set-timezone" data-id="${z}"><span>${z}</span>${state.timezone===z?icon('check',20):icon('clock',20)}</button>`).join('')}</div><p style="color:#979BA0;font-size:11px;line-height:1.8;margin:16px 4px">演示数据中的时间为固定示例，切换偏好不会修改模拟赛程。正式版会根据 UTC 时间戳换算。</p></div></div>`;}
+function closeModal(){const root=$('#modal-root');root.innerHTML=''}
+function handleAction(node){const a=node.dataset.action,id=node.dataset.id;
+ switch(a){
+ case 'nav':state.route=null;state.viewStack=[];$('#detail-root').innerHTML='';$('#detail-root').style.display='none';state.tab=id;renderMain(true);break;
+ case 'date':state.date=id;renderMain(true);break;
+ case 'pick-date':{let el=$('#native-date');if(el){try{el.showPicker()}catch{el.click()}}break}
+ case 'match-filter':state.matchFilter=id;renderMain(false);break;
+ case 'collapse':state.collapsed.has(id)?state.collapsed.delete(id):state.collapsed.add(id);renderMain(false);break;
+ case 'change-month':changeMonth(Number(node.dataset.dir));break;
+ case 'event-filter':state.eventFilter=id;renderMain(false);break;
+ case 'calendar-day':state.date=id;state.tab='matches';renderMain(true);break;
+ case 'team-filter':state.teamFilter=id;renderMain(false);break;
+ case 'rank-kind':state.rankKind=id;renderMain(false);break;
+ case 'rank-region':state.region=id;renderMain(false);break;
+ case 'news-filter':state.newsFilter=id;if(state.route)renderDetail();else renderMain(false);break;
+ case 'transfer-filter':state.transferFilter=id;renderDetail();break;
+ case 'nav-style':state.navStyle=id;safeStorage.set('navStyle',id);renderMain(false);toastMsg(id==='floating'?'已切换悬浮胶囊导航':'已切换固定底部导航');break;
+ case 'follow':followTeam(id);break;
+ case 'reminder':toggleReminder(id);break;
+ case 'save-news':toggleSaveNews(id);break;
+ case 'open-match':openView('match',id);break;
+ case 'open-team':openView('team',id);break;
+ case 'open-player':openView('player',id);break;
+ case 'open-event':state.eventMonth=state.tab==='calendar'?state.month:state.date.slice(0,7);openView('event',id);break;
+ case 'open-news':state.newsFilter='全部';openView('news');break;
+ case 'open-article':openView('article',id);break;
+ case 'open-transfers':state.transferFilter='全部';openView('transfers');break;
+ case 'open-saved':openView('saved');break;
+ case 'open-reminders':openView('reminders');break;
+ case 'open-sources':openView('sources');break;
+ case 'open-about':openView('about');break;
+ case 'search':state.searchQuery='';openView('search');setTimeout(()=>$('#global-search')?.focus(),45);break;
+ case 'back':closeView();break;
+ case 'detail-tab':changeDetailTab(id);break;
+ case 'demo-refresh':state.liveIncrements[id]=(state.liveIncrements[id]||0)+1;toastMsg('模拟回合已更新（非实时）');renderDetail();break;
+ case 'toggle-notices':state.noticeOn=!state.noticeOn;safeStorage.set('noticeOn',state.noticeOn);renderMain(false);toastMsg('已保存偏好（不会发送系统通知）');break;
+ case 'timezone':openTimezoneModal();break;
+ case 'set-timezone':state.timezone=id;safeStorage.set('timezone',id);closeModal();renderMain(false);toastMsg('已保存时间偏好');break;
+ case 'close-modal':closeModal();break;
+ }
+}
+document.addEventListener('click',e=>{const node=e.target.closest('[data-action]');if(!node)return;
+ if(node.dataset.action==='close-modal'&&e.target!==node)return;
+ handleAction(node);
+});
+document.addEventListener('keydown',e=>{
+ if(e.key==='Escape'){if($('#modal-root').innerHTML)closeModal();else if(state.route)closeView();return}
+ if((e.key==='Enter'||e.key===' ')&&e.target.matches('[role="button"][data-action]')){e.preventDefault();handleAction(e.target)}
+});
+document.addEventListener('change',e=>{if(e.target.id==='native-date'&&e.target.value){state.date=e.target.value;state.collapsed.clear();renderMain(true)}});
+document.addEventListener('input',e=>{
+ if(e.target.id==='team-query'){let pos=e.target.selectionStart??e.target.value.length;state.teamQuery=e.target.value;renderMain(false);const i=$('#team-query');if(i){i.focus();try{i.setSelectionRange(pos,pos)}catch{}}}
+ if(e.target.id==='global-search'){state.searchQuery=e.target.value;const hit=$('#search-results');if(hit)hit.innerHTML=searchResults(state.searchQuery);}
+});
+let touchStart=null;
+$('#page-scroll').addEventListener('touchstart',e=>{if(state.tab!=='matches'||state.route||e.target.closest('.dates-strip')||e.target.closest('button')||e.target.closest('input'))return;let t=e.changedTouches[0];touchStart={x:t.clientX,y:t.clientY}},{passive:true});
+$('#page-scroll').addEventListener('touchend',e=>{if(!touchStart||state.tab!=='matches'||state.route)return;let t=e.changedTouches[0],dx=t.clientX-touchStart.x,dy=t.clientY-touchStart.y;touchStart=null;if(Math.abs(dx)>74&&Math.abs(dx)>Math.abs(dy)*1.7){state.date=addDays(state.date,dx<0?1:-1);state.collapsed.clear();renderMain(true)}},{passive:true});
+renderMain(true);
+})();
+</script>
+</body></html>

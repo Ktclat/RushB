@@ -1,0 +1,16 @@
+{
+  "installedApkSha256": "2120ed0774ffccda7feedcef26fad600055e00020dc0f01a90033e4c180e8818",
+  "settings": {
+    "mobileTransport": "HTTPS",
+    "navigationStyle": "FLOATING",
+    "relay": "false",
+    "useWebsiteSession": "true",
+    "themeMode": "LIGHT",
+    "startTab": "MATCHES"
+  },
+  "bookmarks": [
+    "2399415"
+  ],
+  "systemNightMode": "Night mode: no",
+  "adbReverse": ""
+}

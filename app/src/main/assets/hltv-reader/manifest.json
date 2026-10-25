@@ -1,0 +1,13 @@
+{
+  "manifest_version": 2,
+  "name": "RushB page reader",
+  "version": "1.4",
+  "browser_specific_settings": {"gecko": {"id": "reader@rushb.local"}},
+  "permissions": ["nativeMessaging", "nativeMessagingFromContent", "geckoViewAddons"],
+  "content_scripts": [{
+    "matches": ["https://www.hltv.org/*", "https://hltv.org/*"],
+    "js": ["reader.js"],
+    "run_at": "document_end",
+    "all_frames": false
+  }]
+}

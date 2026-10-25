@@ -1,0 +1,645 @@
+{
+  "researchedOn": "2026-10-18",
+  "apk": {
+    "package": "org.hltv.android",
+    "versionName": "3.0.59",
+    "versionCode": 124,
+    "sha256": "e92b3d85ee65861488285161f8986ae8f453db3bfdb90dfa62f7bb0ef3784188",
+    "executed": false,
+    "signatureVerified": false
+  },
+  "tools": {
+    "rea": "6.5.0",
+    "jadx": "0.7.1",
+    "jadxSha256": "6e5eacf500b64292bfb73c49797c1958f6ee44646e43e868039ae7feb573ff75",
+    "globalConfigModified": false
+  },
+  "conclusions": {
+    "mobileJsonBaseObserved": "https://www.hltv.org/mobile",
+    "appIntegrityFlowPresentInApk": true,
+    "backendIntegrityEnforcementObserved": false,
+    "publicGetReturnedJson": false,
+    "mobileSourceEnabledInRushB": false,
+    "androidNetworkAcceptancePassedThisInvestigation": false,
+    "officialAppRuntimeTested": false,
+    "thirdPartyClientExecuted": false
+  },
+  "methods": [
+    {
+      "file": ".local/hltv-api-research/rea-android-package.json",
+      "sha256": "c3d6b44dedbbaa84fb54c53d9a669ebdb12d3c54c266cb6af2aeb6ebe511abea",
+      "evidenceId": "ev_613d0d18402d55ba6870767e78c9c95031ef0bdd595c475d97c8bc1614154c5b",
+      "operation": "inspect_android_package",
+      "class": null,
+      "method": null,
+      "representation": null,
+      "bodyStatus": null,
+      "fellBack": null,
+      "markers": null,
+      "containsJadxWarnings": false,
+      "confidence": "observed",
+      "authority": "shipped-artifact"
+    },
+    {
+      "file": ".local/hltv-api-research/rea-c10-class.json",
+      "sha256": "42f26c7993e5e5618da7619b7b5f23a8f6d1f50e6a0dc150152542e0c672fc30",
+      "evidenceId": "ev_bce6839138e02768b9cdfbc4c3dbe468b2d98d9b7153ab13db104edf007f2e4d",
+      "operation": "inspect_android_class",
+      "class": "defpackage.c10",
+      "method": null,
+      "representation": null,
+      "bodyStatus": null,
+      "fellBack": null,
+      "markers": null,
+      "containsJadxWarnings": false,
+      "confidence": "observed",
+      "authority": "shipped-artifact"
+    },
+    {
+      "file": ".local/hltv-api-research/rea-c10-s.json",
+      "sha256": "7197039402dc0b20738d236207daa77e78a71b3abe73483655807bb51e167aeb",
+      "evidenceId": "ev_abd7840dc8cbbbc0d805a33891d34e91376fca503c31dcda63098b883d9435b4",
+      "operation": "inspect_android_method",
+      "class": "defpackage.c10",
+      "method": {
+        "name": "s",
+        "reported_signature": "s(java.lang.Object): java.lang.Object",
+        "overload_index": 0,
+        "is_constructor": false,
+        "dex_descriptor": "(Ljava/lang/Object;)Ljava/lang/Object;"
+      },
+      "representation": "java",
+      "bodyStatus": "available",
+      "fellBack": false,
+      "markers": [],
+      "containsJadxWarnings": true,
+      "confidence": "derived",
+      "authority": "shipped-artifact"
+    },
+    {
+      "file": ".local/hltv-api-research/rea-fv4-a.json",
+      "sha256": "206b5409939c923183e9d5733c378b303f0a8f392bc96ca75d333ccb82de8797",
+      "evidenceId": "ev_95d5b74080f1c58f66dc78cb5550f9c1b13637b1166653cee4fd42a41517c479",
+      "operation": "inspect_android_method",
+      "class": "defpackage.fv4",
+      "method": {
+        "name": "a",
+        "reported_signature": "a(tl4, zv4): void",
+        "overload_index": 0,
+        "is_constructor": false,
+        "dex_descriptor": "(Ltl4;Lzv4;)V"
+      },
+      "representation": "java",
+      "bodyStatus": "available",
+      "fellBack": false,
+      "markers": [],
+      "containsJadxWarnings": false,
+      "confidence": "derived",
+      "authority": "shipped-artifact"
+    },
+    {
+      "file": ".local/hltv-api-research/rea-fv4-class.json",
+      "sha256": "b9a8a8312a705c0c02bdc4f8c2946f8da045e08e0267d2bde8395809060127b5",
+      "evidenceId": "ev_e37ff35554e272bfca71d7aaa82b54298f0b20187e584753a33942fef6d1493d",
+      "operation": "inspect_android_class",
+      "class": "defpackage.fv4",
+      "method": null,
+      "representation": null,
+      "bodyStatus": null,
+      "fellBack": null,
+      "markers": null,
+      "containsJadxWarnings": false,
+      "confidence": "observed",
+      "authority": "shipped-artifact"
+    },
+    {
+      "file": ".local/hltv-api-research/rea-kc0-a.json",
+      "sha256": "a38886759aa91b17fe1498d022363b0dd8ea5d74adf57dce888c63740910607a",
+      "evidenceId": "ev_da827e196dbcd0d4c851ad1628eb52f091554aabc9d16da7879518d85b4dcca9",
+      "operation": "inspect_android_method",
+      "class": "defpackage.kc0",
+      "method": {
+        "name": "a",
+        "reported_signature": "a(tl4): void",
+        "overload_index": 0,
+        "is_constructor": false,
+        "dex_descriptor": "(Ltl4;)V"
+      },
+      "representation": "java",
+      "bodyStatus": "available",
+      "fellBack": false,
+      "markers": [],
+      "containsJadxWarnings": false,
+      "confidence": "derived",
+      "authority": "shipped-artifact"
+    },
+    {
+      "file": ".local/hltv-api-research/rea-kc0-class.json",
+      "sha256": "42bb8a754031c191efc69bfd1787ba034b36752483c0f376b9fb2e1c337d425d",
+      "evidenceId": "ev_903819d3020dbbf0bea28a0f7577e6385f4f54295192c371e1c9505c3f2251d5",
+      "operation": "inspect_android_class",
+      "class": "defpackage.kc0",
+      "method": null,
+      "representation": null,
+      "bodyStatus": null,
+      "fellBack": null,
+      "markers": null,
+      "containsJadxWarnings": false,
+      "confidence": "observed",
+      "authority": "shipped-artifact"
+    },
+    {
+      "file": ".local/hltv-api-research/rea-kc0-N.json",
+      "sha256": "0ed3f163be2a50b274b7a1a297db345135b0985540bbaf7ab74fc54ae1a18909",
+      "evidenceId": "ev_d317010f1c731c25d2ad19375f0855bf3fd88b0ffaa655303ea9ab39f9eb3598",
+      "operation": "inspect_android_method",
+      "class": "defpackage.kc0",
+      "method": {
+        "name": "N",
+        "reported_signature": "N(java.lang.String, wy1): java.lang.Object",
+        "overload_index": 0,
+        "is_constructor": false,
+        "dex_descriptor": "(Ljava/lang/String;Lwy1;)Ljava/lang/Object;"
+      },
+      "representation": "smali",
+      "bodyStatus": "available",
+      "fellBack": true,
+      "markers": [
+        "Code decompiled incorrectly, please refer to instructions dump"
+      ],
+      "containsJadxWarnings": false,
+      "confidence": "derived",
+      "authority": "shipped-artifact"
+    },
+    {
+      "file": ".local/hltv-api-research/rea-kc0-r0.json",
+      "sha256": "8e18bba86db1c4c8b2502e252091e49c555debc880546110fce1b19940e244c5",
+      "evidenceId": "ev_44caf3ff1c3fbbfeb83b0d66fcd8468f5c25b7ec095d3d807c9c0fec728dc119",
+      "operation": "inspect_android_method",
+      "class": "defpackage.kc0",
+      "method": {
+        "name": "r0",
+        "reported_signature": "r0(dm4): boolean",
+        "overload_index": 0,
+        "is_constructor": false,
+        "dex_descriptor": "(Ldm4;)Z"
+      },
+      "representation": "java",
+      "bodyStatus": "available",
+      "fellBack": false,
+      "markers": [],
+      "containsJadxWarnings": false,
+      "confidence": "derived",
+      "authority": "shipped-artifact"
+    },
+    {
+      "file": ".local/hltv-api-research/rea-kc0-search.json",
+      "sha256": "88e466a2a1f4e5ea3ad27c34bf804380958b1902afbc32be852a594b64f6a290",
+      "evidenceId": "ev_67a51910608c0869a801c452800485a7f2ae340a60d4de09c4f45bbbbef97b78",
+      "operation": "search_android_classes",
+      "class": null,
+      "method": null,
+      "representation": null,
+      "bodyStatus": null,
+      "fellBack": null,
+      "markers": null,
+      "containsJadxWarnings": false,
+      "confidence": "observed",
+      "authority": "shipped-artifact"
+    },
+    {
+      "file": ".local/hltv-api-research/rea-kc0-U.json",
+      "sha256": "164f3d4d5191786b4a853c384be8df37d1c5b518a7c2f1d2aa0b798b315e66f8",
+      "evidenceId": "ev_f7922891833bea5d4103d8c285a60a0a90af8a22078e693fb6276d4ee1180930",
+      "operation": "inspect_android_method",
+      "class": "defpackage.kc0",
+      "method": {
+        "name": "U",
+        "reported_signature": "U(java.lang.String, java.util.Map, wy1): java.lang.Object",
+        "overload_index": 0,
+        "is_constructor": false,
+        "dex_descriptor": "(Ljava/lang/String;Ljava/util/Map;Lwy1;)Ljava/lang/Object;"
+      },
+      "representation": "java",
+      "bodyStatus": "available",
+      "fellBack": false,
+      "markers": [],
+      "containsJadxWarnings": false,
+      "confidence": "derived",
+      "authority": "shipped-artifact"
+    },
+    {
+      "file": ".local/hltv-api-research/rea-lv4-class.json",
+      "sha256": "9cd71aa8cd989ffc9f1a82f42fe5b78d0d826ac3b621d3e1f5b039c31085e8d0",
+      "evidenceId": "ev_c5e33b30527a7abb44f7080568a9f7cea8d7554d3a8d1bab3e59fb8208f7c2d4",
+      "operation": "inspect_android_class",
+      "class": "defpackage.lv4",
+      "method": null,
+      "representation": null,
+      "bodyStatus": null,
+      "fellBack": null,
+      "markers": null,
+      "containsJadxWarnings": false,
+      "confidence": "observed",
+      "authority": "shipped-artifact"
+    },
+    {
+      "file": ".local/hltv-api-research/rea-lv4-s.json",
+      "sha256": "73e76605be903a313284c9c9c27becbee3ce937974a786247fbf029fc0176eb1",
+      "evidenceId": "ev_0a7a60cce8fb85b1db131df79a2f8acc3cf340393a97f283c6fd4a807bddc552",
+      "operation": "inspect_android_method",
+      "class": "defpackage.lv4",
+      "method": {
+        "name": "s",
+        "reported_signature": "s(java.lang.Object): java.lang.Object",
+        "overload_index": 0,
+        "is_constructor": false,
+        "dex_descriptor": "(Ljava/lang/Object;)Ljava/lang/Object;"
+      },
+      "representation": "java",
+      "bodyStatus": "available",
+      "fellBack": false,
+      "markers": [],
+      "containsJadxWarnings": true,
+      "confidence": "derived",
+      "authority": "shipped-artifact"
+    },
+    {
+      "file": ".local/hltv-api-research/rea-pn7-a.json",
+      "sha256": "56ef53bfd7e137b0b2e898c26e8dec2ac5133a19694f5ed3cccf31fcaaddaa08",
+      "evidenceId": "ev_d7981b82e38cc9b62a52bab02e3c9f68b24f5ffff1333ee7248f025728aa313b",
+      "operation": "inspect_android_method",
+      "class": "defpackage.pn7",
+      "method": {
+        "name": "a",
+        "reported_signature": "a(java.lang.String, uy1): java.lang.Object",
+        "overload_index": 0,
+        "is_constructor": false,
+        "dex_descriptor": "(Ljava/lang/String;Luy1;)Ljava/lang/Object;"
+      },
+      "representation": "java",
+      "bodyStatus": "available",
+      "fellBack": false,
+      "markers": [],
+      "containsJadxWarnings": true,
+      "confidence": "derived",
+      "authority": "shipped-artifact"
+    },
+    {
+      "file": ".local/hltv-api-research/rea-pn7-b.json",
+      "sha256": "762efefdfb9623d461bdf47ea85e982a205bf19f480734de65adfdac39f7b57a",
+      "evidenceId": "ev_844188325eb5e4213f1e80dd7fcc87b9f02c4b997955c0a74517ec6f1c983477",
+      "operation": "inspect_android_method",
+      "class": "defpackage.pn7",
+      "method": {
+        "name": "b",
+        "reported_signature": "b(): gv4",
+        "overload_index": 0,
+        "is_constructor": false,
+        "dex_descriptor": "()Lgv4;"
+      },
+      "representation": "java",
+      "bodyStatus": "available",
+      "fellBack": false,
+      "markers": [],
+      "containsJadxWarnings": false,
+      "confidence": "derived",
+      "authority": "shipped-artifact"
+    },
+    {
+      "file": ".local/hltv-api-research/rea-pn7-class.json",
+      "sha256": "a59c97e6f617c29ef1b83312db137e0c27b04da28829ddf1b8c39f8b0db16c7f",
+      "evidenceId": "ev_f0389a01376499ec73169341aa8cc109aa4963e0d8e599318e5a14750b707c65",
+      "operation": "inspect_android_class",
+      "class": "defpackage.pn7",
+      "method": null,
+      "representation": null,
+      "bodyStatus": null,
+      "fellBack": null,
+      "markers": null,
+      "containsJadxWarnings": false,
+      "confidence": "observed",
+      "authority": "shipped-artifact"
+    },
+    {
+      "file": ".local/hltv-api-research/rea-pv4-a.json",
+      "sha256": "ba745a0cc36483472b65f52943e44e53c29222644a3b3e135d931eb8dd4a6c8a",
+      "evidenceId": "ev_8fe3d1d97f14d556fe6219247d215e4239f88975dc4550042a3a8811a389e527",
+      "operation": "inspect_android_method",
+      "class": "defpackage.pv4",
+      "method": {
+        "name": "a",
+        "reported_signature": "a(wy1): java.lang.Object",
+        "overload_index": 0,
+        "is_constructor": false,
+        "dex_descriptor": "(Lwy1;)Ljava/lang/Object;"
+      },
+      "representation": "java",
+      "bodyStatus": "available",
+      "fellBack": false,
+      "markers": [],
+      "containsJadxWarnings": true,
+      "confidence": "derived",
+      "authority": "shipped-artifact"
+    },
+    {
+      "file": ".local/hltv-api-research/rea-pv4-class.json",
+      "sha256": "8b924613ea5be6b8d70d5ea18d5e12a0d3f19d4a76d599a8cf460870f484578c",
+      "evidenceId": "ev_7dc0bf0dabe006191292957ddf98d1a1433edb2920a3244f72d9738cb437c88c",
+      "operation": "inspect_android_class",
+      "class": "defpackage.pv4",
+      "method": null,
+      "representation": null,
+      "bodyStatus": null,
+      "fellBack": null,
+      "markers": null,
+      "containsJadxWarnings": false,
+      "confidence": "observed",
+      "authority": "shipped-artifact"
+    },
+    {
+      "file": ".local/hltv-api-research/rea-zf2-class.json",
+      "sha256": "3b53aa4c7f4b05ce16e7af1182b28134320159a15639a07a8742200819310554",
+      "evidenceId": "ev_8ca35cf87a86247491470ed6ab8bc119d6c830d4f6620f5810f4990d35152996",
+      "operation": "inspect_android_class",
+      "class": "defpackage.zf2",
+      "method": null,
+      "representation": null,
+      "bodyStatus": null,
+      "fellBack": null,
+      "markers": null,
+      "containsJadxWarnings": false,
+      "confidence": "observed",
+      "authority": "shipped-artifact"
+    },
+    {
+      "file": ".local/hltv-api-research/rea-zf2-s.json",
+      "sha256": "2c4e12ae7939d774cc0571a976fbfc6d308eacb87bbcbf773fbc773c8331f8b4",
+      "evidenceId": "ev_bedc0c4a0e6dc45a4b5494bc010026307006cd692ede38be7ab57c44f9c479e4",
+      "operation": "inspect_android_method",
+      "class": "defpackage.zf2",
+      "method": {
+        "name": "s",
+        "reported_signature": "s(java.lang.Object): java.lang.Object",
+        "overload_index": 0,
+        "is_constructor": false,
+        "dex_descriptor": "(Ljava/lang/Object;)Ljava/lang/Object;"
+      },
+      "representation": "smali",
+      "bodyStatus": "available",
+      "fellBack": true,
+      "markers": [
+        "Code decompiled incorrectly, please refer to instructions dump"
+      ],
+      "containsJadxWarnings": false,
+      "confidence": "derived",
+      "authority": "shipped-artifact"
+    }
+  ],
+  "sdkVerifiedRoutes": [
+    {
+      "method": "kc0.N:(Ljava/lang/String;Lwy1;)Ljava/lang/Object;",
+      "constants": [
+        {
+          "value": "/MatchScreen",
+          "line": 8626,
+          "offset": "0dd950"
+        },
+        {
+          "value": "matchId",
+          "line": 8627,
+          "offset": "0dd954"
+        }
+      ]
+    },
+    {
+      "method": "kc0.V:(Ljava/util/List;Lwy1;)Ljava/lang/Object;",
+      "constants": [
+        {
+          "value": "PlayerCompare",
+          "line": 13658,
+          "offset": "0e2698"
+        },
+        {
+          "value": "playerIds",
+          "line": 13659,
+          "offset": "0e269c"
+        }
+      ]
+    },
+    {
+      "method": "kc0.W:(IILwy1;)Ljava/lang/Object;",
+      "constants": [
+        {
+          "value": "PlayerEventStats",
+          "line": 14356,
+          "offset": "0e3154"
+        },
+        {
+          "value": "playerId",
+          "line": 14357,
+          "offset": "0e3158"
+        },
+        {
+          "value": "eventId",
+          "line": 14362,
+          "offset": "0e316e"
+        }
+      ]
+    },
+    {
+      "method": "kc0.X:(Ljava/lang/String;Lwy1;)Ljava/lang/Object;",
+      "constants": [
+        {
+          "value": "PlayerScreen",
+          "line": 15078,
+          "offset": "0e3c74"
+        },
+        {
+          "value": "playerId",
+          "line": 15079,
+          "offset": "0e3c78"
+        }
+      ]
+    },
+    {
+      "method": "kc0.Y:(Ljava/lang/String;Lwy1;)Ljava/lang/Object;",
+      "constants": [
+        {
+          "value": "PlayerNews",
+          "line": 15773,
+          "offset": "0e4724"
+        },
+        {
+          "value": "playerId",
+          "line": 15774,
+          "offset": "0e4728"
+        }
+      ]
+    },
+    {
+      "method": "kc0.Z:(Lwy1;)Ljava/lang/Object;",
+      "constants": [
+        {
+          "value": "ReadsNews",
+          "line": 16458,
+          "offset": "0e51ac"
+        }
+      ]
+    },
+    {
+      "method": "kc0.c0:(Ljava/lang/String;Lwy1;)Ljava/lang/Object;",
+      "constants": [
+        {
+          "value": "TeamScreen",
+          "line": 19287,
+          "offset": "0e7c30"
+        },
+        {
+          "value": "teamId",
+          "line": 19288,
+          "offset": "0e7c34"
+        }
+      ]
+    },
+    {
+      "method": "kc0.d0:(Ljava/lang/String;Lwy1;)Ljava/lang/Object;",
+      "constants": [
+        {
+          "value": "TeamNews",
+          "line": 20412,
+          "offset": "0e8d90"
+        },
+        {
+          "value": "teamId",
+          "line": 20413,
+          "offset": "0e8d94"
+        }
+      ]
+    },
+    {
+      "method": "kc0.v:(Ljava/lang/String;ZLwy1;)Ljava/lang/Object;",
+      "constants": [
+        {
+          "value": "/event/stats",
+          "line": 32457,
+          "offset": "0f46c4"
+        },
+        {
+          "value": "event",
+          "line": 32458,
+          "offset": "0f46c8"
+        },
+        {
+          "value": "playoffOnly",
+          "line": 32461,
+          "offset": "0f46d6"
+        }
+      ]
+    }
+  ],
+  "additionalSdkRoutes": [
+    {
+      "method": "[0dee54] kc0.P:(Lwy1;)Ljava/lang/Object;",
+      "constants": [
+        {
+          "line": 10056,
+          "instruction": "0def54: 1a00 3204                              |0078: const-string v0, \"/MatchesV4\" // string@0432"
+        },
+        {
+          "line": 10061,
+          "instruction": "0def66: 6e40 ee0f 0781                         |0081: invoke-virtual {v7, v0, v1, v8}, Lkc0;.T:(Ljava/lang/String;Ljava/util/Map;Lwy1;)Ljava/lang/Object; // method@0fee"
+        },
+        {
+          "line": 10069,
+          "instruction": "0def84: 1a04 f018                              |0090: const-string v4, \"Set-Cookie\" // string@18f0"
+        }
+      ]
+    },
+    {
+      "method": "[0f350c] kc0.t:(Ljava/lang/String;Lwy1;)Ljava/lang/Object;",
+      "constants": [
+        {
+          "line": 31371,
+          "instruction": "0f360c: 1a00 2e04                              |0078: const-string v0, \"/EventDetails2\" // string@042e"
+        },
+        {
+          "line": 31372,
+          "instruction": "0f3610: 1a01 681e                              |007a: const-string v1, \"eventId\" // string@1e68"
+        },
+        {
+          "line": 31379,
+          "instruction": "0f362c: 6e40 ee0f 0687                         |0088: invoke-virtual {v6, v0, v7, v8}, Lkc0;.T:(Ljava/lang/String;Ljava/util/Map;Lwy1;)Ljava/lang/Object; // method@0fee"
+        },
+        {
+          "line": 31387,
+          "instruction": "0f364a: 1a01 f018                              |0097: const-string v1, \"Set-Cookie\" // string@18f0"
+        }
+      ]
+    },
+    {
+      "method": "[0f4bd4] kc0.w:(Lwy1;)Ljava/lang/Object;",
+      "constants": [
+        {
+          "line": 32858,
+          "instruction": "0f4cd4: 1a00 e905                              |0078: const-string v0, \"EventsData2\" // string@05e9"
+        },
+        {
+          "line": 32863,
+          "instruction": "0f4ce6: 6e40 ee0f 0781                         |0081: invoke-virtual {v7, v0, v1, v8}, Lkc0;.T:(Ljava/lang/String;Ljava/util/Map;Lwy1;)Ljava/lang/Object; // method@0fee"
+        },
+        {
+          "line": 32871,
+          "instruction": "0f4d04: 1a04 f018                              |0090: const-string v4, \"Set-Cookie\" // string@18f0"
+        }
+      ]
+    }
+  ],
+  "probe": {
+    "url": "https://www.hltv.org/mobile/MatchScreen?matchId=2399415",
+    "startedAt": "2026-10-18T13:57:07.463779+00:00",
+    "seconds": 0.46,
+    "status": 403,
+    "contentType": "text/html; charset=UTF-8",
+    "bytes": 5573,
+    "authenticationSupplied": false,
+    "officialClientIdentityImitated": false,
+    "retryCount": 0,
+    "sha256": "fa7a8a4b169337ba4fb50a7fa388790163a3c6c19b12d2197517ead771e89f3e",
+    "pageKind": "cloudflare-block",
+    "environment": "host-python-not-android",
+    "scope": "One ordinary read-only GET; no mobile JSON was returned."
+  },
+  "diagnosticToolChecks": {
+    "scope": "offline synthetic checks only",
+    "networkRequests": 0,
+    "passed": 17,
+    "checks": [
+      "integrity-required",
+      "login-denied",
+      "cf-challenge",
+      "cf-denied",
+      "plain-forbidden",
+      "rate-limited",
+      "redirect",
+      "server-error",
+      "html-success-status",
+      "json-under-wrong-type",
+      "invalid-json",
+      "json-null",
+      "cf-success-json",
+      "oversized",
+      "invalid-ids-rejected",
+      "route-parameter-contract",
+      "denied-response-does-not-save-payload-or-cookies"
+    ]
+  },
+  "publicSourceReport": "docs/HLTV-LIBRARIES.md",
+  "rawPublicEvidenceManifest": ".local/hltv-api-research/evidence-manifest.json",
+  "limits": [
+    "Static methods do not prove current server policy or successful network execution.",
+    "Some REA Java output contains decompiler warnings; kc0.N and zf2.s use Smali fallback.",
+    "Kill-matrix wire enums, row/column orientation and actual populated payload remain unverified.",
+    "The older public mobile wrapper targets Android 3.0.34 and lacks the integrity-session chain observed in 3.0.59."
+  ]
+}

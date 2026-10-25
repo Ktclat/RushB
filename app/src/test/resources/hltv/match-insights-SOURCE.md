@@ -1,0 +1,18 @@
+# Match analysis fixtures
+
+The files below were reduced from existing normal-browser HTML captures on 2026-10-18. Public data and identifiers are unchanged. Only the scoreboard identities, lineup ranking headers, map statistics, recent matches, head-to-head history, and VRS forecast/result modules are retained. Scripts, styles, ads, forms, SVG drawings, and irrelevant player tables are removed.
+
+- `match-insights-result-2026-10-18.html`: source `output/playwright/hltv-match-relay.html`; https://www.hltv.org/matches/2399415/falcons-vs-betboom-thunderpick-world-championship-2026. Contains the VRS result estimate, two head-to-head map rows from one series, and 17 Falcons / 13 BETBOOM recent results under both Team and Core filters. The post-match source has no map-pool module.
+- `match-insights-forecast-2026-10-18.html`: source `output/playwright/hltv-upcoming-relay.html`; https://www.hltv.org/matches/2399416/aurora-vs-falcons-thunderpick-world-championship-2026. Captured before the match. Contains each team's VRS win/loss forecast, seven maps under three metrics (win/pick/ban), seven head-to-head map rows, and 28 Aurora / 18 Falcons recent results under both Team and Core filters.
+
+VRS figures are HLTV's isolated estimate of the match-result effect. They do not establish the final official VRS standings including prize and placement effects. A missing rank change is retained as null. Map-table `-` remains unknown even where the chart's overlay array uses zero; the source withholds percentages below its minimum sample.
+
+Head-to-head counters and rows are map-level. Multiple maps from the same series retain their shared real match URL without being collapsed or presented as series scores. Recent-match scores are oriented to the team owning that table; the match URL's slug order does not define the score order. Relative dates and absent events are not converted into invented timestamps or tournament identities.
+
+The public team-results route `https://www.hltv.org/results?team=11283` was independently verified on the website. `results-team-filter-2026-10-18.html` is an unchanged filter fragment from `output/playwright/hltv-results-relay.html`: the official “Require all teams” link is `/results?requireAllTeams=`. The complete head-to-head URL combines the two team IDs with that empty-valued intersection switch; it refers to team history, not a lineup-core filter. Multi-team result-page navigation could not be verified through the web tool during this investigation and still needs in-app browser acceptance.
+
+`MatchAnalysisCalculationsTest` also reads the existing `team-profile-2026-10-18.html`. Its `#statsBox h2` explicitly says “Map win statistics past 3 months”. A fallback built from these team-profile maps uses that capture-time team window, not the historical match's lineup core or another match's map-pool module. Played-map samples are the sum of the published wins, draws and losses only when all three counts exist. Missing percentages are not reconstructed from those counts. The test's enclosing tournament is a clearly marked synthetic identity; all asserted player totals, recent results, map rows and historical match URLs come from the real fixtures.
+
+Current-match K/D is total player kills divided by total player deaths. Averaged player ratings are labelled as player means with their source version and are not represented as a published team rating or long-term strength. Recent win rate uses Team-filtered match rows, includes the completed current series once, and shows its actual sample size. The head-to-head counter remains a separate map-level measure.
+
+These are offline test fixtures only. Third-party content retains its original ownership.
