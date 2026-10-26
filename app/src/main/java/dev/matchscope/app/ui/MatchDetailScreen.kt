@@ -64,6 +64,7 @@ internal fun MatchDetailScreen(match: Match, state: ScopeState, vm: ScopeViewMod
     val now by matchClock(match)
     val liveRounds = match.liveScore?.takeIf { match.status == MatchStatus.LIVE && it.isFresh(now) && it.leftRounds != null && it.rightRounds != null }
     var tab by rememberSaveable(match.id) { mutableStateOf("分析") }
+    var duelMap by rememberSaveable(match.id) { mutableStateOf("all") }
     val statisticsMatch = remember(match, state.matchStatistics[match.id]) { match.withSideStatistics(state.matchStatistics[match.id]) }
     val statistics = rememberStatisticsSelection(statisticsMatch)
     LaunchedEffect(tab, match.id, match.stamp) {
@@ -85,7 +86,8 @@ internal fun MatchDetailScreen(match: Match, state: ScopeState, vm: ScopeViewMod
         }.minOfOrNull { it.offset }
     } }
     val scope = rememberCoroutineScope()
-    Box(Modifier.fillMaxSize()) {
+    BoxWithConstraints(Modifier.fillMaxSize()) {
+    val duelViewport = (maxHeight - with(LocalDensity.current) { tabHeight.toDp() } - 20.dp).coerceAtLeast(0.dp)
     LazyColumn(state = list, modifier = Modifier.testTag("match-detail-list"), contentPadding = PaddingValues(start = 12.dp, end = 12.dp, bottom = 20.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)) {
         item(key = "hero") {
@@ -126,9 +128,13 @@ internal fun MatchDetailScreen(match: Match, state: ScopeState, vm: ScopeViewMod
         }
         stickyHeader(key = "tabs") {
             Box(Modifier.fillMaxWidth().background(Background).onSizeChanged { tabHeight = it.height }.padding(vertical = 4.dp)) {
-                PageTabs(listOf("分析", "数据", "阵容"), tab) { next ->
+                PageTabs(listOf("分析", "数据", "对位", "阵容"), tab) { next ->
+                    if (next == "对位" && tab == "数据") duelMap = statistics.maps.firstOrNull { it.mapKey == statistics.mapKey }?.mapName?.lowercase() ?: statistics.mapKey ?: "all"
+                    if (next == "数据" && tab == "对位") statistics.maps.firstOrNull {
+                        (it.mapName?.lowercase() ?: it.mapKey) == duelMap
+                    }?.let { statistics.selectMap(it.mapKey) }
                     tab = next
-                    if (next == "数据" || list.firstVisibleItemIndex > 1) scope.launch { list.scrollToItem(1) }
+                    if (next in setOf("数据", "对位") || list.firstVisibleItemIndex > 1) scope.launch { list.scrollToItem(1) }
                 }
             }
         }
@@ -136,7 +142,17 @@ internal fun MatchDetailScreen(match: Match, state: ScopeState, vm: ScopeViewMod
         if (stamp.origin != DataOrigin.SNAPSHOT && match.note != null) item { UpdateWarning(stamp, state.zone, state.zoneLabel) }
         when (tab) {
             "分析" -> matchAnalysis(match, state, vm, open)
-            "数据" -> matchDataContent(match, state, vm, statistics, open)
+            "数据" -> matchDataContent(match, state, vm, statistics, open) {
+                duelMap = statistics.maps.firstOrNull { it.mapKey == statistics.mapKey }?.mapName?.lowercase() ?: statistics.mapKey ?: "all"
+                tab = "对位"
+                scope.launch { list.scrollToItem(1) }
+            }
+            "对位" -> item(key = "match-duels") {
+                // A shorter matrix page still lets the tabs pin cleanly instead of leaving a clipped hero footer.
+                Box(Modifier.fillMaxWidth().heightIn(min = duelViewport)) {
+                    MatchDuelPanel(statisticsMatch, state, vm, duelMap, { duelMap = it }, open)
+                }
+            }
             "阵容" -> {
                 listOf(match.left, match.right).forEach { team ->
                     item { SectionLabel(team.name) }

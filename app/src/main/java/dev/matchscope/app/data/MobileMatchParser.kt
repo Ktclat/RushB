@@ -77,22 +77,8 @@ object MobileMatchParser {
             val matrices = value.objects("killMatrixes").mapNotNull { matrix(it, players) }
             if (matrices.isNotEmpty()) duels[key] = MatchDuels(source, matrices)
         }
-        // A series total is only available when all completed maps have a complete matrix.
-        if (base.status == MatchStatus.FINISHED && maps.isNotEmpty() && maps.all { it.left != null && it.right != null } && duels.size == maps.size) {
-            val totals = DuelMetric.entries.mapNotNull { metric ->
-                val parts = maps.map { duels[it.name.lowercase()]?.matrices?.firstOrNull { m -> m.metric == metric } }
-                if (parts.any { it == null }) return@mapNotNull null
-                val first = parts.first()!!
-                if (parts.any { it!!.rowPlayers.map(PlayerRef::id).toSet() != first.rowPlayers.map(PlayerRef::id).toSet() || it.columnPlayers.map(PlayerRef::id).toSet() != first.columnPlayers.map(PlayerRef::id).toSet() }) return@mapNotNull null
-                first.copy(cells = first.cells.map { cell ->
-                    val entries = parts.map { part -> part!!.cells.single { it.rowPlayerId == cell.rowPlayerId && it.columnPlayerId == cell.columnPlayerId } }
-                    cell.copy(rowKills = entries.sumOf(DuelCell::rowKills), columnKills = entries.sumOf(DuelCell::columnKills))
-                })
-            }
-            if (totals.isNotEmpty()) duels["all"] = MatchDuels(source, totals)
-        }
         return base.copy(maps = maps, veto = data.ms("veto")?.lineSequence()?.filter(String::isNotBlank)?.toList().orEmpty(), stats = allStats,
-            statGroups = groups, players = lineups, detailed = true, insights = insights(data, base), duels = duels)
+            statGroups = groups, players = lineups, detailed = true, insights = insights(data, base), duels = duels).withDuelTotals()
     }
     private fun matrix(j: JSONObject, players: Map<String, PlayerRef>): DuelMatrix? {
         val metric = when (j.ms("type")) { "ALL" -> DuelMetric.ALL_KILLS; "FIRST_KILL" -> DuelMetric.OPENING_KILLS; "AWP" -> DuelMetric.AWP_KILLS; else -> return null }

@@ -34,11 +34,12 @@ __pycache__/
 *.py[cod]
 .DS_Store
 Thumbs.db
-/({tag
+/([{]tag
 
 # Keep the current reviewed UI evidence; historical captures stay local.
 /docs/screenshots/*
 !/docs/screenshots/review-v0106/
+!/docs/screenshots/review-v0107/
 /docs/VALIDATION-*.md
 /docs/UI-REVIEW-v*.md
 !/docs/UI-REVIEW-v0106.md
@@ -55,3 +56,4 @@ Thumbs.db
 !/docs/evidence/news-sources-v0102.json
 !/docs/evidence/website-news-v0102-final.json
 !/docs/evidence/publication.json
+!/docs/evidence/duels-v0107.json

@@ -1,0 +1,300 @@
+{
+  "version": "0.10.7",
+  "versionCode": 22,
+  "verifiedUtc": "2026-10-26T15:24:41.005142+00:00",
+  "emulator": {
+    "serial": "emulator-5554",
+    "avd": "RushB_ProfileReview",
+    "android": "16",
+    "api": 36,
+    "abi": "x86_64",
+    "realDeviceTested": false,
+    "wmSize": "Physical size: 1080x2340",
+    "wmDensity": "Physical density: 440",
+    "systemFontScale": "1.0"
+  },
+  "jvm": {
+    "tests": 171,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "lint": {
+    "Error": 0,
+    "Warning": 20
+  },
+  "lintCategories": {
+    "OldTargetApi": 1,
+    "GradleDependency": 4,
+    "NewerVersionAvailable": 4,
+    "UseKtx": 11
+  },
+  "androidRegression": {
+    "tests": 108,
+    "failures": 0,
+    "seconds": 129.966,
+    "localLog": ".local/duels-android-final.log",
+    "logSha256": "5049bd046ba2ac8613680592394c1509491857e15083d6708a220468415d422f"
+  },
+  "earlierFocusedRegression": {
+    "tests": 19,
+    "failures": 0,
+    "seconds": 50.689,
+    "localLog": ".local/duels-focused-tests.log",
+    "logSha256": "94a1abd73da1bf59b6c14dadd0415e97356e7db9fa23a3635e0c4b2cf8ad20d1"
+  },
+  "initialFullRun": {
+    "tests": 108,
+    "failures": 1,
+    "resolution": "Scoped the map/side UI assertion to the left team header; both teams legitimately share that label. Final full rerun passed."
+  },
+  "build": {
+    "localLog": ".local/duels-build-verified.log",
+    "logSha256": "10d35556c0252ca3ebf517d242b6237339591816ab760aa97d3f12aeae5eb3a0",
+    "finalTestBuildLocalLog": ".local/duels-test-build-final.log",
+    "finalTestBuildLogSha256": "e4c8902142ca4b132d366620f70d5f7a3b7ab3dfdbadfc2eb4c44036b7eb4e28"
+  },
+  "artifacts": [
+    {
+      "path": "app/build/outputs/apk/debug/app-arm64-v8a-debug.apk",
+      "bytes": 115524848,
+      "sha256": "7a6edc79598bcc00915e5778190ba61086560c02cf7114f45a53d8d2eb4ab0e2",
+      "testFixturesPackaged": false
+    },
+    {
+      "path": "app/build/outputs/apk/debug/app-armeabi-v7a-debug.apk",
+      "bytes": 110270848,
+      "sha256": "bcfe0103b9ed50d245ae38f1c89ba375f276089339ea1ea0ea557fec1e38fb42",
+      "testFixturesPackaged": false
+    },
+    {
+      "path": "app/build/outputs/apk/debug/app-x86_64-debug.apk",
+      "bytes": 122353278,
+      "sha256": "e88c8f8e33c7039f799062bd9d118d801ce71384c8c2016c76e3a724ce227bb5",
+      "testFixturesPackaged": false
+    }
+  ],
+  "installedApkSha256": "e88c8f8e33c7039f799062bd9d118d801ce71384c8c2016c76e3a724ce227bb5",
+  "testApkSha256": "aff22fd669cc63c177f7069f3c2bad4db024b8212a8e95aa823712c9dd1de231",
+  "screenshots": [
+    {
+      "phase": "after",
+      "capturedUtc": "2026-10-26T14:45:01.203929+00:00",
+      "screenshot": "docs/screenshots/review-v0107/after/01-duels-dark.png",
+      "apkSha256": "e88c8f8e33c7039f799062bd9d118d801ce71384c8c2016c76e3a724ce227bb5",
+      "sha256": "94f3e587a2cab301f5212ae74ff51e8780ef4a094db81ebe6595a59c0fd8472b",
+      "settings": {
+        "navigationStyle": "FLOATING",
+        "relay": "false",
+        "themeMode": "DARK",
+        "startTab": "MATCHES"
+      }
+    },
+    {
+      "phase": "after",
+      "capturedUtc": "2026-10-25T11:47:38.730661+00:00",
+      "screenshot": "docs/screenshots/review-v0107/after/02-duels-light.png",
+      "apkSha256": "e88c8f8e33c7039f799062bd9d118d801ce71384c8c2016c76e3a724ce227bb5",
+      "sha256": "279862481fb847efb2d820e8c7d8d70897c071de37c3a907722814a9588d650e",
+      "settings": {
+        "navigationStyle": "FLOATING",
+        "relay": "false",
+        "themeMode": "LIGHT",
+        "startTab": "MATCHES"
+      }
+    },
+    {
+      "phase": "after",
+      "capturedUtc": "2026-10-25T11:47:49.798625+00:00",
+      "screenshot": "docs/screenshots/review-v0107/after/03-anubis-opening.png",
+      "apkSha256": "e88c8f8e33c7039f799062bd9d118d801ce71384c8c2016c76e3a724ce227bb5",
+      "sha256": "6510d9957c3ba583fc537d319dffbcee26e014cfd8c94e18153412c01456584b",
+      "settings": {
+        "navigationStyle": "FLOATING",
+        "relay": "false",
+        "themeMode": "LIGHT",
+        "startTab": "MATCHES"
+      }
+    },
+    {
+      "phase": "after",
+      "capturedUtc": "2026-10-25T11:48:50.619174+00:00",
+      "screenshot": "docs/screenshots/review-v0107/after/04-awp.png",
+      "apkSha256": "e88c8f8e33c7039f799062bd9d118d801ce71384c8c2016c76e3a724ce227bb5",
+      "sha256": "5cea6288bac708459d4c86662de1244fbc60a2592f236b5706e03c9e26309e2f",
+      "settings": {
+        "navigationStyle": "FLOATING",
+        "relay": "false",
+        "themeMode": "LIGHT",
+        "startTab": "MATCHES"
+      }
+    },
+    {
+      "phase": "after",
+      "capturedUtc": "2026-10-25T11:48:58.133365+00:00",
+      "screenshot": "docs/screenshots/review-v0107/after/05-duel-detail.png",
+      "apkSha256": "e88c8f8e33c7039f799062bd9d118d801ce71384c8c2016c76e3a724ce227bb5",
+      "sha256": "68df073eafcb69772b6b9bd5576d48482afd5c7a99c0fb3ba0f67877983d49cb",
+      "settings": {
+        "navigationStyle": "FLOATING",
+        "relay": "false",
+        "themeMode": "LIGHT",
+        "startTab": "MATCHES"
+      }
+    },
+    {
+      "phase": "after",
+      "capturedUtc": "2026-10-25T11:49:08.668530+00:00",
+      "screenshot": "docs/screenshots/review-v0107/after/06-player-navigation.png",
+      "apkSha256": "e88c8f8e33c7039f799062bd9d118d801ce71384c8c2016c76e3a724ce227bb5",
+      "sha256": "4c1a5e9ec3aa820ca9fb54f94fbca7196a42eb608d9f9cb69474c144380f4906",
+      "settings": {
+        "navigationStyle": "FLOATING",
+        "relay": "false",
+        "themeMode": "LIGHT",
+        "startTab": "MATCHES"
+      }
+    },
+    {
+      "phase": "after",
+      "capturedUtc": "2026-10-25T11:50:28.749142+00:00",
+      "screenshot": "docs/screenshots/review-v0107/after/07-data-to-duels.png",
+      "apkSha256": "e88c8f8e33c7039f799062bd9d118d801ce71384c8c2016c76e3a724ce227bb5",
+      "sha256": "f62c826b556637db48570902a6f355fdca90e730a0ce0c0210286b4930b65cc6",
+      "settings": {
+        "navigationStyle": "FLOATING",
+        "relay": "false",
+        "themeMode": "LIGHT",
+        "startTab": "MATCHES"
+      }
+    },
+    {
+      "phase": "after",
+      "capturedUtc": "2026-10-25T11:50:40.044410+00:00",
+      "screenshot": "docs/screenshots/review-v0107/after/08-duels-to-data.png",
+      "apkSha256": "e88c8f8e33c7039f799062bd9d118d801ce71384c8c2016c76e3a724ce227bb5",
+      "sha256": "d86f70cba386976496129f45620c125970c88d208ad358ce11b7ec9f88389d1e",
+      "settings": {
+        "navigationStyle": "FLOATING",
+        "relay": "false",
+        "themeMode": "LIGHT",
+        "startTab": "MATCHES"
+      }
+    }
+  ],
+  "boundaryScreenshots": [
+    {
+      "screenshot": "docs/screenshots/review-v0107/boundary/duels-dark-320dp.png",
+      "sha256": "afe63d6c134809c5c25645718f9e6e26e56a8d54c56c7400c3722f60ebde6ec3",
+      "widthDp": 320,
+      "fontScale": 1.5,
+      "source": "Compose instrumentation using recorded test fixture; not a live network probe",
+      "test": "MatchDuelUiTest.fullMatrixFitsNarrowScreensAndLargeTextInBothThemes"
+    },
+    {
+      "screenshot": "docs/screenshots/review-v0107/boundary/duels-light-320dp.png",
+      "sha256": "9abd5c2267e856ec0914aad904957056e96065ab003be4f2d06d06081bd64024",
+      "widthDp": 320,
+      "fontScale": 1.5,
+      "source": "Compose instrumentation using recorded test fixture; not a live network probe",
+      "test": "MatchDuelUiTest.fullMatrixFitsNarrowScreensAndLargeTextInBothThemes"
+    }
+  ],
+  "realData": {
+    "matchId": "2399415",
+    "status": "FINISHED",
+    "stamp": {
+      "url": "https://www.hltv.org/mobile/MatchScreen?matchId=2399415",
+      "at": "2026-10-26T14:37:27.078Z",
+      "origin": "NETWORK"
+    },
+    "duelScopes": {
+      "anubis": {
+        "ALL_KILLS": 25,
+        "OPENING_KILLS": 25,
+        "AWP_KILLS": 25
+      },
+      "dust2": {
+        "ALL_KILLS": 25,
+        "OPENING_KILLS": 25,
+        "AWP_KILLS": 25
+      },
+      "mirage": {
+        "ALL_KILLS": 25,
+        "OPENING_KILLS": 25,
+        "AWP_KILLS": 25
+      },
+      "all": {
+        "ALL_KILLS": 25,
+        "OPENING_KILLS": 25,
+        "AWP_KILLS": 25
+      }
+    },
+    "settings": {
+      "mobileTransport": "HTTPS",
+      "navigationStyle": "FLOATING",
+      "relay": "false",
+      "themeMode": "LIGHT",
+      "startTab": "MATCHES"
+    },
+    "adbReverse": "",
+    "warning": null,
+    "observation": "Normal production app mobile HTTPS read; response timestamp retained. No fixture injected into production app.",
+    "verifiedValues": [
+      {
+        "map": "all",
+        "metric": "ALL_KILLS",
+        "rowPlayer": "Boombl4",
+        "columnPlayer": "m0NESY",
+        "rowKills": 3,
+        "columnKills": 13
+      },
+      {
+        "map": "all",
+        "metric": "OPENING_KILLS",
+        "rowPlayer": "Boombl4",
+        "columnPlayer": "m0NESY",
+        "rowKills": 0,
+        "columnKills": 6
+      },
+      {
+        "map": "all",
+        "metric": "AWP_KILLS",
+        "rowPlayer": "Boombl4",
+        "columnPlayer": "m0NESY",
+        "rowKills": 0,
+        "columnKills": 6
+      }
+    ]
+  },
+  "finalSettings": {
+    "mobileTransport": "HTTPS",
+    "navigationStyle": "FLOATING",
+    "relay": "false",
+    "themeMode": "LIGHT",
+    "startTab": "MATCHES"
+  },
+  "adbReverse": "",
+  "localArm64Output": "output/RushB-0.10.7-arm64-v8a.apk",
+  "limitations": [
+    "No real-device, cellular-network or long-term service-availability verification.",
+    "Mobile JSON is the verified duel source; website HTML duel parsing still needs reliable source evidence.",
+    "No fabricated missing metrics or values; source access may still require verification or cooldown."
+  ],
+  "jsChecks": {
+    "reader": {
+      "command": "node tools/test-reader.mjs",
+      "result": "passed",
+      "coverage": [
+        "reader assertions",
+        "JSON transport/route/errors/byte limit",
+        "RSS XML/single fetch/size limit"
+      ]
+    },
+    "relayPolicy": {
+      "command": "node --test tools/hltv-relay/policy.test.mjs",
+      "tests": 3,
+      "failures": 0
+    }
+  }
+}

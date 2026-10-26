@@ -76,7 +76,7 @@ class MobileWorkflowTest {
             val targetMatch = hasText("Falcons") and hasText("BETBOOM", ignoreCase = true) and hasClickAction()
             app.onNode(hasScrollToNodeAction() and SemanticsMatcher.keyIsDefined(SemanticsProperties.VerticalScrollAxisRange)).performScrollToNode(targetMatch)
             app.onNode(targetMatch).performClick()
-            app.onNodeWithText("数据", substring = false).performClick()
+            app.onNodeWithText("对位", substring = false).performClick()
             app.onNodeWithText("CT", substring = false).assertDoesNotExist()
             for (attempt in 0 until 20) {
                 if (app.onNodeWithContentDescription("Boombl4 对 kyousuke，7 次击杀，5 次被杀").isDisplayed()) break
